@@ -2,8 +2,8 @@
 
 ## Phase 1: Implementation & Testing
 - [x] Task: Add `intl` package to `pubspec.yaml` (if not already present). [09f4501]
-- [ ] Task: Create a date formatting helper to handle the `d MMM HH:mm` pattern.
-- [ ] Task: Write unit tests for the date formatting helper.
+- [x] Task: Create a date formatting helper to handle the `d MMM HH:mm` pattern. [dd1a3d1]
+- [x] Task: Write unit tests for the date formatting helper. [dd1a3d1]
 - [ ] Task: Update `MessageBubble` widget to display the timestamp using the new helper.
 - [ ] Task: Update `message_bubble_test.dart` to verify the new timestamp format.
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Implementation & Testing' (Protocol in workflow.md)
