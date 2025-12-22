@@ -3,7 +3,7 @@
 ## Phase 1: Logic & Provider Updates
 - [x] Task: Add `removeMessage` method to `ChatProvider` to support deletion. [b001928]
 - [x] Task: Write unit tests for `ChatProvider.removeMessage`. [b001928]
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Logic & Provider Updates' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Logic & Provider Updates' (Protocol in workflow.md) [checkpoint]
 
 ## Phase 2: UI Implementation
 - [ ] Task: Create `MessageOptionsSheet` widget displaying message preview and options (Delete, Copy).
