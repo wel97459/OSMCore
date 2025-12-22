@@ -33,7 +33,7 @@ void main() {
 
     await tester.enterText(find.byType(TextField), 'Hello Screen');
     await tester.pump();
-    await tester.tap(find.byType(IconButton));
+    await tester.tap(find.byIcon(Icons.send));
     await tester.pump();
 
     expect(find.text('Hello Screen'), findsOneWidget);

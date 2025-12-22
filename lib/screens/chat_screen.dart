@@ -39,6 +39,21 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: const Text('Chat Template'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.download),
+            tooltip: 'Simulate Receive',
+            onPressed: () {
+              final newMessage = ChatMessage(
+                id: DateTime.now().millisecondsSinceEpoch.toString(),
+                text: 'This is a received message!',
+                senderId: 'user2',
+                timestamp: DateTime.now(),
+              );
+              context.read<ChatProvider>().addMessage(newMessage);
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [
