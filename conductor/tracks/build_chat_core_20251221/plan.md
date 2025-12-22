@@ -10,7 +10,7 @@
 - [x] Task: Write unit tests for `ChatProvider`. [3ef248f]
 - [x] Task: Conductor - User Manual Verification 'Phase 2: State Management' (Protocol in workflow.md) [checkpoint]
 
-## Phase 3: UI Implementation
+## Phase 3: UI Implementation [checkpoint: 4e26b11]
 - [x] Task: Implement `MessageBubble` widget with Material 3 styling. [8ecdaaf]
 - [x] Task: Implement `MessageList` with `ListView.builder`. [fef0c24]
 - [x] Task: Implement `ChatInput` widget. [567e27a]
