@@ -1,9 +1,9 @@
 # Plan: Byte-Limited Input (140 Bytes)
 
 ## Phase 1: Preparation and Utilities
-- [~] Task: Create Utility for UTF-8 Byte Counting
-- [ ] Task: Write Tests for Byte Counting Utility
-- [ ] Task: Implement Byte Counting Utility
+- [x] Task: Create Utility for UTF-8 Byte Counting 51aa34b
+- [x] Task: Write Tests for Byte Counting Utility 51aa34b
+- [x] Task: Implement Byte Counting Utility 51aa34b
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Preparation and Utilities' (Protocol in workflow.md)
 
 ## Phase 2: Input Field Enhancement
