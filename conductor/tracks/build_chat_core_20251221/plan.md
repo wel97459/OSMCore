@@ -2,7 +2,7 @@
 
 ## Phase 1: Project Initialization & Models
 - [x] Task: Initialize Flutter project and add dependencies (`provider`, `font_awesome_flutter`, `flutter_spinkit`). [28c6fb2]
-- [ ] Task: Create `ChatMessage` model.
+- [x] Task: Create `ChatMessage` model. [b07b573]
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Project Initialization & Models' (Protocol in workflow.md)
 
 ## Phase 2: State Management
