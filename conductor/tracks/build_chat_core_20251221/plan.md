@@ -6,8 +6,8 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Project Initialization & Models' (Protocol in workflow.md) [checkpoint]
 
 ## Phase 2: State Management
-- [ ] Task: Implement `ChatProvider` for in-memory message management.
-- [ ] Task: Write unit tests for `ChatProvider`.
+- [x] Task: Implement `ChatProvider` for in-memory message management. [3ef248f]
+- [x] Task: Write unit tests for `ChatProvider`. [3ef248f]
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: State Management' (Protocol in workflow.md)
 
 ## Phase 3: UI Implementation
