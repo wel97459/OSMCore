@@ -15,7 +15,7 @@
 - [x] Task: Implement `MessageList` with `ListView.builder`. [fef0c24]
 - [x] Task: Implement `ChatInput` widget. [567e27a]
 - [x] Task: Implement `ChatScreen` and integrate components. [017a383]
-- [ ] Task: Implement auto-scroll to bottom logic.
+- [x] Task: Implement auto-scroll to bottom logic. [e93ba91]
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: UI Implementation' (Protocol in workflow.md)
 
 ## Phase 4: Final Polishing & Verification
