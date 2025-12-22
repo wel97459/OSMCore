@@ -1,0 +1,8 @@
+{
+  "track_id": "build_chat_core_20251221",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2025-12-21T12:00:00Z",
+  "updated_at": "2025-12-21T12:00:00Z",
+  "description": "Build the core chat interface including the message list, input field, and provider-based state management for in-memory messages."
+}
