@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:chat_template/models/chat_message.dart';
+import 'package:chat_template/utils/date_formatter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MessageBubble extends StatelessWidget {
@@ -53,7 +54,7 @@ class MessageBubble extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      '${message.timestamp.hour}:${message.timestamp.minute.toString().padLeft(2, '0')}',
+                      formatMessageDate(message.timestamp),
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: (isMe
                                 ? colorScheme.onPrimaryContainer

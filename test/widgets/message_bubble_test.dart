@@ -70,4 +70,26 @@ void main() {
 
     expect(find.byIcon(Icons.done_all), findsOneWidget);
   });
+
+  testWidgets('MessageBubble displays full date timestamp', (WidgetTester tester) async {
+    final message = ChatMessage(
+      id: '1',
+      text: 'Timestamp test',
+      senderId: 'user1',
+      timestamp: DateTime(2025, 12, 21, 14, 30),
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: MessageBubble(
+            message: message,
+            isMe: true,
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('21 Dec 14:30'), findsOneWidget);
+  });
 }
