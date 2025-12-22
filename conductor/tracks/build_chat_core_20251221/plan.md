@@ -19,6 +19,6 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 3: UI Implementation' (Protocol in workflow.md) [checkpoint]
 
 ## Phase 4: Final Polishing & Verification
-- [ ] Task: Verify Material 3 styling and animations.
-- [ ] Task: Ensure 80% test coverage for new components.
+- [x] Task: Verify Material 3 styling and animations. [819b424]
+- [x] Task: Ensure 80% test coverage for new components. [128191b]
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Final Polishing & Verification' (Protocol in workflow.md)
