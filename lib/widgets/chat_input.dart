@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import '../utils/byte_counter.dart';
+import '../utils/byte_limit_input_formatter.dart';
 
 class ChatInput extends StatefulWidget {
   final Function(String) onSend;
@@ -16,6 +19,8 @@ class _ChatInputState extends State<ChatInput> {
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
   bool _canSend = false;
+  int _currentBytes = 0;
+  static const int _maxBytes = 140;
 
   @override
   void initState() {
@@ -33,13 +38,14 @@ class _ChatInputState extends State<ChatInput> {
 
   void _onTextChanged() {
     setState(() {
-      _canSend = _controller.text.trim().isNotEmpty;
+      _currentBytes = ByteCounter.countBytes(_controller.text);
+      _canSend = _controller.text.trim().isNotEmpty && _currentBytes <= _maxBytes;
     });
   }
 
   void _handleSend() {
     final text = _controller.text.trim();
-    if (text.isNotEmpty) {
+    if (text.isNotEmpty && ByteCounter.countBytes(text) <= _maxBytes) {
       widget.onSend(text);
       _controller.clear();
       _focusNode.requestFocus();
@@ -63,25 +69,33 @@ class _ChatInputState extends State<ChatInput> {
         ],
       ),
       child: SafeArea(
-        child: Row(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Expanded(
-              child: TextField(
-                controller: _controller,
-                focusNode: _focusNode,
-                decoration: const InputDecoration(
-                  hintText: 'Type a message...',
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _controller,
+                    focusNode: _focusNode,
+                    decoration: const InputDecoration(
+                      hintText: 'Type a message...',
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    ),
+                    textCapitalization: TextCapitalization.sentences,
+                    onSubmitted: (_) => _handleSend(),
+                    inputFormatters: [
+                      ByteLimitInputFormatter(_maxBytes),
+                    ],
+                  ),
                 ),
-                textCapitalization: TextCapitalization.sentences,
-                onSubmitted: (_) => _handleSend(),
-              ),
-            ),
-            IconButton(
-              icon: const Icon(Icons.send),
-              color: theme.colorScheme.primary,
-              onPressed: _canSend ? _handleSend : null,
+                IconButton(
+                  icon: const Icon(Icons.send),
+                  color: theme.colorScheme.primary,
+                  onPressed: _canSend ? _handleSend : null,
+                ),
+              ],
             ),
           ],
         ),
