@@ -5,7 +5,7 @@
 - [x] Task: Write unit tests for `ChatProvider.removeMessage`. [b001928]
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Logic & Provider Updates' (Protocol in workflow.md) [checkpoint]
 
-## Phase 2: UI Implementation
+## Phase 2: UI Implementation [checkpoint: 1a3f7c3]
 - [x] Task: Create `MessageOptionsSheet` widget displaying message preview and options (Delete, Copy). [2d96931]
 - [x] Task: Update `MessageBubble` to wrap in `GestureDetector` and trigger `showModalBottomSheet` on long press. [7354a83]
 - [x] Task: Implement clipboard copy logic in `MessageOptionsSheet`. [7354a83]
