@@ -11,7 +11,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: State Management' (Protocol in workflow.md) [checkpoint]
 
 ## Phase 3: UI Implementation
-- [ ] Task: Implement `MessageBubble` widget with Material 3 styling.
+- [x] Task: Implement `MessageBubble` widget with Material 3 styling. [8ecdaaf]
 - [ ] Task: Implement `MessageList` with `ListView.builder`.
 - [ ] Task: Implement `ChatInput` widget.
 - [ ] Task: Implement `ChatScreen` and integrate components.
