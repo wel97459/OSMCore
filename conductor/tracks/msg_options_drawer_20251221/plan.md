@@ -11,7 +11,7 @@
 - [x] Task: Implement clipboard copy logic in `MessageOptionsSheet`. [7354a83]
 - [x] Task: Implement delete logic in `MessageOptionsSheet` (calling `ChatProvider.removeMessage`). [7354a83]
 - [x] Task: Write widget tests for `MessageOptionsSheet` and long-press interaction. [7354a83]
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: UI Implementation' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: UI Implementation' (Protocol in workflow.md) [checkpoint]
 
 ## Phase 3: Final Verification & UX
 - [ ] Task: Add `ScaffoldMessenger` feedback (Snackbar) for the "Copy text" action.
