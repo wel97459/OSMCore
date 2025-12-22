@@ -4,5 +4,9 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [~] Track: Build core chat interface with message list and state management
-*Link: [./conductor/tracks/build_chat_core_20251221/](./conductor/tracks/build_chat_core_20251221/)*
+## [~] Track: Byte-Limited Input (140 Bytes)
+*Link: [./conductor/tracks/byte_limit_input_20251222/](./conductor/tracks/byte_limit_input_20251222/)*
+
+
+
+
