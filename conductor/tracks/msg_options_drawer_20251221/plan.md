@@ -13,7 +13,7 @@
 - [x] Task: Write widget tests for `MessageOptionsSheet` and long-press interaction. [7354a83]
 - [x] Task: Conductor - User Manual Verification 'Phase 2: UI Implementation' (Protocol in workflow.md) [checkpoint]
 
-## Phase 3: Final Verification & UX
+## Phase 3: Final Verification & UX [checkpoint: d944d58]
 - [x] Task: Add `ScaffoldMessenger` feedback (Snackbar) for the "Copy text" action. [7354a83]
 - [x] Task: Verify drawer behavior for both sent and received messages. [7354a83]
 - [x] Task: Ensure code coverage remains >80%. [7354a83]
