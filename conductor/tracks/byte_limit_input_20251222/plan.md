@@ -13,7 +13,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Input Field Enhancement' (Protocol in workflow.md) 88561bf
 
 ## Phase 3: UI Feedback
-- [ ] Task: Add Byte Counter UI to ChatInput
-- [ ] Task: Write Widget Tests for Byte Counter Visibility and Accuracy
-- [ ] Task: Style Byte Counter according to Material 3
+- [x] Task: Add Byte Counter UI to ChatInput bf1cf69
+- [x] Task: Write Widget Tests for Byte Counter Visibility and Accuracy bf1cf69
+- [x] Task: Style Byte Counter according to Material 3 bf1cf69
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: UI Feedback' (Protocol in workflow.md)
