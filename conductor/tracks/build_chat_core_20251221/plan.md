@@ -8,7 +8,7 @@
 ## Phase 2: State Management
 - [x] Task: Implement `ChatProvider` for in-memory message management. [3ef248f]
 - [x] Task: Write unit tests for `ChatProvider`. [3ef248f]
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: State Management' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: State Management' (Protocol in workflow.md) [checkpoint]
 
 ## Phase 3: UI Implementation
 - [ ] Task: Implement `MessageBubble` widget with Material 3 styling.
