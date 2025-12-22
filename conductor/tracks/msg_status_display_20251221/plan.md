@@ -5,7 +5,7 @@
 - [x] Task: Write unit tests for `MessageStatusLine` widget verifying content and layout. [e791504]
 - [x] Task: Update `MessageBubble` widget to include `MessageStatusLine` for sent messages only. [65ea637]
 - [x] Task: Update `message_bubble_test.dart` to verify status line presence for sent messages and absence for received messages. [65ea637]
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Implementation & Testing' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Implementation & Testing' (Protocol in workflow.md) [checkpoint]
 
 ## Phase 2: Final Verification
 - [ ] Task: Verify that status line appears correctly for sent messages with different statuses (Sent, Delivered, Read).
