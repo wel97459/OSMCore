@@ -1,6 +1,6 @@
 # Plan: Detailed Message Status Display
 
-## Phase 1: Implementation & Testing
+## Phase 1: Implementation & Testing [checkpoint: abbe18e]
 - [x] Task: Create `MessageStatusLine` widget to display status text and icon side-by-side. [e791504]
 - [x] Task: Write unit tests for `MessageStatusLine` widget verifying content and layout. [e791504]
 - [x] Task: Update `MessageBubble` widget to include `MessageStatusLine` for sent messages only. [65ea637]
