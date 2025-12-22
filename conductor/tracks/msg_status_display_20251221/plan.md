@@ -8,7 +8,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Implementation & Testing' (Protocol in workflow.md) [checkpoint]
 
 ## Phase 2: Final Verification
-- [ ] Task: Verify that status line appears correctly for sent messages with different statuses (Sent, Delivered, Read).
-- [ ] Task: Verify that status line is absent for received messages.
-- [ ] Task: Ensure code coverage remains >80%.
+- [x] Task: Verify that status line appears correctly for sent messages with different statuses (Sent, Delivered, Read). [46a4484]
+- [x] Task: Verify that status line is absent for received messages. [46a4484]
+- [x] Task: Ensure code coverage remains >80%. [abbe18e]
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Final Verification' (Protocol in workflow.md)
