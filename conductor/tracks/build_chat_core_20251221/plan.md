@@ -12,7 +12,7 @@
 
 ## Phase 3: UI Implementation
 - [x] Task: Implement `MessageBubble` widget with Material 3 styling. [8ecdaaf]
-- [ ] Task: Implement `MessageList` with `ListView.builder`.
+- [x] Task: Implement `MessageList` with `ListView.builder`. [fef0c24]
 - [ ] Task: Implement `ChatInput` widget.
 - [ ] Task: Implement `ChatScreen` and integrate components.
 - [ ] Task: Implement auto-scroll to bottom logic.
