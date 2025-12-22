@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:chat_template/providers/chat_provider.dart';
 import 'package:chat_template/widgets/message_list.dart';
 import 'package:chat_template/widgets/chat_input.dart';
+import 'package:chat_template/widgets/message_options_sheet.dart';
 import 'package:chat_template/models/chat_message.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -25,6 +27,33 @@ class _ChatScreenState extends State<ChatScreen> {
         curve: Curves.easeOut,
       );
     }
+  }
+
+  void _showOptionsSheet(ChatMessage message) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => MessageOptionsSheet(
+        message: message,
+        isMe: message.senderId == ChatScreen.currentUserId,
+        onDelete: () {
+          context.read<ChatProvider>().removeMessage(message);
+          Navigator.pop(context);
+        },
+        onCopy: () {
+          Clipboard.setData(ClipboardData(text: message.text)).then((_) {
+            if (mounted) {
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Copied to clipboard'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+            }
+          });
+        },
+      ),
+    );
   }
 
   @override
@@ -67,6 +96,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   messages: chatProvider.messages,
                   currentUserId: ChatScreen.currentUserId,
                   scrollController: _scrollController,
+                  onMessageLongPress: _showOptionsSheet,
                 );
               },
             ),

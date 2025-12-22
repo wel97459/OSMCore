@@ -6,12 +6,14 @@ class MessageList extends StatelessWidget {
   final List<ChatMessage> messages;
   final String currentUserId;
   final ScrollController? scrollController;
+  final Function(ChatMessage)? onMessageLongPress;
 
   const MessageList({
     super.key,
     required this.messages,
     required this.currentUserId,
     this.scrollController,
+    this.onMessageLongPress,
   });
 
   @override
@@ -25,6 +27,9 @@ class MessageList extends StatelessWidget {
         return MessageBubble(
           message: message,
           isMe: message.senderId == currentUserId,
+          onLongPress: onMessageLongPress != null
+              ? () => onMessageLongPress!(message)
+              : null,
         );
       },
     );
