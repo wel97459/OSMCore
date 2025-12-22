@@ -5,7 +5,7 @@
 - [x] Task: Create `ChatMessage` model. [b07b573]
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Project Initialization & Models' (Protocol in workflow.md) [checkpoint]
 
-## Phase 2: State Management
+## Phase 2: State Management [checkpoint: 9f4321c]
 - [x] Task: Implement `ChatProvider` for in-memory message management. [3ef248f]
 - [x] Task: Write unit tests for `ChatProvider`. [3ef248f]
 - [x] Task: Conductor - User Manual Verification 'Phase 2: State Management' (Protocol in workflow.md) [checkpoint]
