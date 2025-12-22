@@ -14,6 +14,7 @@ class ChatInput extends StatefulWidget {
 
 class _ChatInputState extends State<ChatInput> {
   final _controller = TextEditingController();
+  final _focusNode = FocusNode();
   bool _canSend = false;
 
   @override
@@ -26,6 +27,7 @@ class _ChatInputState extends State<ChatInput> {
   void dispose() {
     _controller.removeListener(_onTextChanged);
     _controller.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -40,6 +42,7 @@ class _ChatInputState extends State<ChatInput> {
     if (text.isNotEmpty) {
       widget.onSend(text);
       _controller.clear();
+      _focusNode.requestFocus();
     }
   }
 
@@ -65,6 +68,7 @@ class _ChatInputState extends State<ChatInput> {
             Expanded(
               child: TextField(
                 controller: _controller,
+                focusNode: _focusNode,
                 decoration: const InputDecoration(
                   hintText: 'Type a message...',
                   border: InputBorder.none,
