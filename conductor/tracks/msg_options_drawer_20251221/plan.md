@@ -14,7 +14,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: UI Implementation' (Protocol in workflow.md) [checkpoint]
 
 ## Phase 3: Final Verification & UX
-- [ ] Task: Add `ScaffoldMessenger` feedback (Snackbar) for the "Copy text" action.
-- [ ] Task: Verify drawer behavior for both sent and received messages.
-- [ ] Task: Ensure code coverage remains >80%.
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Final Verification & UX' (Protocol in workflow.md)
+- [x] Task: Add `ScaffoldMessenger` feedback (Snackbar) for the "Copy text" action. [7354a83]
+- [x] Task: Verify drawer behavior for both sent and received messages. [7354a83]
+- [x] Task: Ensure code coverage remains >80%. [7354a83]
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Final Verification & UX' (Protocol in workflow.md) [checkpoint]
