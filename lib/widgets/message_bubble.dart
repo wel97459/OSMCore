@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:chat_template/models/chat_message.dart';
 import 'package:chat_template/utils/date_formatter.dart';
+import 'package:chat_template/widgets/message_status_line.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MessageBubble extends StatelessWidget {
@@ -50,53 +51,24 @@ class MessageBubble extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      formatMessageDate(message.timestamp),
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: (isMe
-                                ? colorScheme.onPrimaryContainer
-                                : colorScheme.onSurfaceVariant)
-                            .withOpacity(0.7),
-                      ),
-                    ),
-                    if (isMe) ...[
-                      const SizedBox(width: 4),
-                      _getStatusIcon(colorScheme),
-                    ],
-                  ],
+                Text(
+                  formatMessageDate(message.timestamp),
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: (isMe
+                            ? colorScheme.onPrimaryContainer
+                            : colorScheme.onSurfaceVariant)
+                        .withOpacity(0.7),
+                  ),
                 ),
               ],
             ),
           ),
+          if (isMe) ...[
+            const SizedBox(height: 2),
+            MessageStatusLine(status: message.status),
+          ],
         ],
       ),
-    );
-  }
-
-  Widget _getStatusIcon(ColorScheme colorScheme) {
-    IconData icon;
-    Color color = colorScheme.onPrimaryContainer.withOpacity(0.7);
-
-    switch (message.status) {
-      case MessageStatus.sent:
-        icon = Icons.check;
-        break;
-      case MessageStatus.delivered:
-        icon = Icons.done_all;
-        break;
-      case MessageStatus.read:
-        icon = Icons.done_all;
-        color = colorScheme.primary;
-        break;
-    }
-
-    return Icon(
-      icon,
-      size: 12,
-      color: color,
     );
   }
 }

@@ -92,4 +92,52 @@ void main() {
 
     expect(find.text('21 Dec 14:30'), findsOneWidget);
   });
+
+  testWidgets('MessageBubble displays status line for sent messages', (WidgetTester tester) async {
+    final message = ChatMessage(
+      id: '1',
+      text: 'Sent message',
+      senderId: 'user1',
+      timestamp: DateTime.now(),
+      status: MessageStatus.sent,
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: MessageBubble(
+            message: message,
+            isMe: true,
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Sent'), findsOneWidget);
+    expect(find.byIcon(Icons.check), findsOneWidget);
+  });
+
+  testWidgets('MessageBubble does NOT display status line for received messages', (WidgetTester tester) async {
+    final message = ChatMessage(
+      id: '1',
+      text: 'Received message',
+      senderId: 'user2',
+      timestamp: DateTime.now(),
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: MessageBubble(
+            message: message,
+            isMe: false,
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Sent'), findsNothing);
+    expect(find.text('Delivered'), findsNothing);
+    expect(find.text('Read'), findsNothing);
+  });
 }
