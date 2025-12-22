@@ -42,4 +42,32 @@ void main() {
     // Note: Emoji length in String might be 2 (surrogate pair).
     expect(textField.controller?.text, thirtyFiveEmojis);
   });
+
+  testWidgets('ChatInput displays byte counter', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: ChatInput(onSend: (_) {}),
+        ),
+      ),
+    );
+
+    // Initial state
+    expect(find.text('0/140 bytes'), findsOneWidget);
+
+    // Type some text
+    await tester.enterText(find.byType(TextField), 'Hello');
+    await tester.pump();
+    expect(find.text('5/140 bytes'), findsOneWidget);
+
+    // Type multi-byte characters
+    await tester.enterText(find.byType(TextField), 'Café');
+    await tester.pump();
+    expect(find.text('5/140 bytes'), findsOneWidget); // 'Café' is 5 bytes
+
+    // Type emoji
+    await tester.enterText(find.byType(TextField), '😊');
+    await tester.pump();
+    expect(find.text('4/140 bytes'), findsOneWidget); // '😊' is 4 bytes
+  });
 }

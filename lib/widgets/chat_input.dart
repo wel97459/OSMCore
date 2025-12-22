@@ -97,6 +97,20 @@ class _ChatInputState extends State<ChatInput> {
                 ),
               ],
             ),
+            Padding(
+              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 4),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    '$_currentBytes/$_maxBytes bytes',
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.outline,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
