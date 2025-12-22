@@ -29,5 +29,26 @@ void main() {
       expect(provider.messages.first, message);
       expect(notified, isTrue);
     });
+
+    test('removeMessage should remove a message and notify listeners', () {
+      final provider = ChatProvider();
+      bool notified = false;
+      provider.addListener(() {
+        notified = true;
+      });
+
+      final message = ChatMessage(
+        id: '1',
+        text: 'Test message',
+        senderId: 'user1',
+        timestamp: DateTime.now(),
+      );
+
+      provider.addMessage(message);
+      provider.removeMessage(message);
+
+      expect(provider.messages, isEmpty);
+      expect(notified, isTrue);
+    });
   });
 }

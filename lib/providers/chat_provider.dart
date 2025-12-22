@@ -10,4 +10,9 @@ class ChatProvider with ChangeNotifier {
     _messages.add(message);
     notifyListeners();
   }
+
+  void removeMessage(ChatMessage message) {
+    _messages.remove(message);
+    notifyListeners();
+  }
 }
