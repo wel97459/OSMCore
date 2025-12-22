@@ -9,6 +9,6 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Implementation & Testing' (Protocol in workflow.md) [checkpoint]
 
 ## Phase 2: Final Verification
-- [ ] Task: Verify that both sent and received messages display the correct format via the UI (Simulate Receive & Manual Send).
-- [ ] Task: Ensure code coverage remains >80%.
+- [x] Task: Verify that both sent and received messages display the correct format via the UI (Simulate Receive & Manual Send). [0081404]
+- [x] Task: Ensure code coverage remains >80%. [0081404]
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Final Verification' (Protocol in workflow.md)
