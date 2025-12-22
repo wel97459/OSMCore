@@ -1,6 +1,6 @@
 # Plan: Build Core Chat Interface
 
-## Phase 1: Project Initialization & Models
+## Phase 1: Project Initialization & Models [checkpoint: 03cd7bc]
 - [x] Task: Initialize Flutter project and add dependencies (`provider`, `font_awesome_flutter`, `flutter_spinkit`). [28c6fb2]
 - [x] Task: Create `ChatMessage` model. [b07b573]
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Project Initialization & Models' (Protocol in workflow.md) [checkpoint]
