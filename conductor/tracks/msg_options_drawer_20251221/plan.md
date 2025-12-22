@@ -1,6 +1,6 @@
 # Plan: Message Options Bottom Drawer
 
-## Phase 1: Logic & Provider Updates
+## Phase 1: Logic & Provider Updates [checkpoint: 5a19edc]
 - [x] Task: Add `removeMessage` method to `ChatProvider` to support deletion. [b001928]
 - [x] Task: Write unit tests for `ChatProvider.removeMessage`. [b001928]
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Logic & Provider Updates' (Protocol in workflow.md) [checkpoint]
