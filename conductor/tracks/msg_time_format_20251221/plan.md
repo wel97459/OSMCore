@@ -6,7 +6,7 @@
 - [x] Task: Write unit tests for the date formatting helper. [dd1a3d1]
 - [x] Task: Update `MessageBubble` widget to display the timestamp using the new helper. [07f61a5]
 - [x] Task: Update `message_bubble_test.dart` to verify the new timestamp format. [07f61a5]
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Implementation & Testing' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Implementation & Testing' (Protocol in workflow.md) [checkpoint]
 
 ## Phase 2: Final Verification
 - [ ] Task: Verify that both sent and received messages display the correct format via the UI (Simulate Receive & Manual Send).
