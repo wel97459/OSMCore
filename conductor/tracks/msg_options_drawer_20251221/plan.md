@@ -6,11 +6,11 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Logic & Provider Updates' (Protocol in workflow.md) [checkpoint]
 
 ## Phase 2: UI Implementation
-- [ ] Task: Create `MessageOptionsSheet` widget displaying message preview and options (Delete, Copy).
-- [ ] Task: Update `MessageBubble` to wrap in `GestureDetector` and trigger `showModalBottomSheet` on long press.
-- [ ] Task: Implement clipboard copy logic in `MessageOptionsSheet`.
-- [ ] Task: Implement delete logic in `MessageOptionsSheet` (calling `ChatProvider.removeMessage`).
-- [ ] Task: Write widget tests for `MessageOptionsSheet` and long-press interaction.
+- [x] Task: Create `MessageOptionsSheet` widget displaying message preview and options (Delete, Copy). [2d96931]
+- [x] Task: Update `MessageBubble` to wrap in `GestureDetector` and trigger `showModalBottomSheet` on long press. [7354a83]
+- [x] Task: Implement clipboard copy logic in `MessageOptionsSheet`. [7354a83]
+- [x] Task: Implement delete logic in `MessageOptionsSheet` (calling `ChatProvider.removeMessage`). [7354a83]
+- [x] Task: Write widget tests for `MessageOptionsSheet` and long-press interaction. [7354a83]
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: UI Implementation' (Protocol in workflow.md)
 
 ## Phase 3: Final Verification & UX
