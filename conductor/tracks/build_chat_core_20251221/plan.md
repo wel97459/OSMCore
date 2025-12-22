@@ -16,7 +16,7 @@
 - [x] Task: Implement `ChatInput` widget. [567e27a]
 - [x] Task: Implement `ChatScreen` and integrate components. [017a383]
 - [x] Task: Implement auto-scroll to bottom logic. [e93ba91]
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: UI Implementation' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: UI Implementation' (Protocol in workflow.md) [checkpoint]
 
 ## Phase 4: Final Polishing & Verification
 - [ ] Task: Verify Material 3 styling and animations.
