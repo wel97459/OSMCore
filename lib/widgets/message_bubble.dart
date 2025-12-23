@@ -48,6 +48,11 @@ class MessageBubble extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if(!isMe && showAvatar)
+                Text(
+                  message.senderName,
+                  style: theme.textTheme.labelSmall
+                ),
               Text(
                 message.text,
                 style: theme.textTheme.bodyLarge?.copyWith(

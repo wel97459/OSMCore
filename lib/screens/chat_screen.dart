@@ -33,27 +33,27 @@ class _ChatScreenState extends State<ChatScreen> {
       case 'group':
         provider.setChatContext(
           isGroupChat: true,
-          currentHandle: 'Channel Alpha',
+          currentHandle: 'Public',
         );
         break;
       case 'direct_direct':
         provider.setChatContext(
           isGroupChat: false,
-          currentHandle: 'Winston',
+          currentHandle: 'NU6O',
           connectionPath: 'Path: Direct',
         );
         break;
       case 'direct_flood':
         provider.setChatContext(
           isGroupChat: false,
-          currentHandle: 'Winston',
+          currentHandle: 'sard',
           connectionPath: 'Path: Flood',
         );
         break;
       case 'direct_3hops':
         provider.setChatContext(
           isGroupChat: false,
-          currentHandle: 'Winston',
+          currentHandle: 'Test',
           connectionPath: 'Path: 3 Hops',
         );
         break;
@@ -116,7 +116,7 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             UserAvatar(
               handle: chatProvider.currentHandle,
-              iconData: chatProvider.isGroupChat ? FontAwesomeIcons.lightbulb : null,
+              iconData: chatProvider.isGroupChat ? FontAwesomeIcons.peopleGroup : null,
               size: 36,
             ),
             const SizedBox(width: 12),
@@ -150,7 +150,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 id: DateTime.now().millisecondsSinceEpoch.toString(),
                 text: 'This is a received message!',
                 senderId: 'user2',
-                senderName: chatProvider.isGroupChat ? 'Channel Member' : chatProvider.currentHandle,
+                senderName: chatProvider.isGroupChat ? 'Baddie' : chatProvider.currentHandle,
                 timestamp: DateTime.now(),
               );
               context.read<ChatProvider>().addMessage(newMessage);
