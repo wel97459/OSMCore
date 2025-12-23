@@ -1,9 +1,9 @@
 # Plan: Better Emoji Font Support
 
 ## Phase 1: Asset Preparation
-- [~] Task: Download "Noto Color Emoji" font file
-- [ ] Task: Add font file to `assets/fonts/` directory
-- [~] Task: Update `pubspec.yaml` to include the new asset and define the font family
+- [x] Task: Download "Noto Color Emoji" font file 377c3f8
+- [x] Task: Add font file to `assets/fonts/` directory 377c3f8
+- [x] Task: Update `pubspec.yaml` to include the new asset and define the font family 377c3f8
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Asset Preparation' (Protocol in workflow.md)
 
 ## Phase 2: Implementation and Configuration
