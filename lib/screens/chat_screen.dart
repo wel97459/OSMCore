@@ -7,6 +7,9 @@ import 'package:chat_template/widgets/chat_input.dart';
 import 'package:chat_template/widgets/message_options_sheet.dart';
 import 'package:chat_template/models/chat_message.dart';
 
+import 'package:chat_template/widgets/user_avatar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 class ChatScreen extends StatefulWidget {
   static const String currentUserId = 'user1';
 
@@ -64,10 +67,40 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final chatProvider = context.watch<ChatProvider>();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chat Template'),
-        centerTitle: true,
+        title: Row(
+          children: [
+            UserAvatar(
+              handle: chatProvider.currentHandle,
+              iconData: chatProvider.isGroupChat ? FontAwesomeIcons.lightbulb : null,
+              size: 36,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    chatProvider.currentHandle,
+                    style: theme.textTheme.titleMedium,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    chatProvider.isGroupChat ? "Channel Messages" : chatProvider.connectionPath,
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: theme.colorScheme.onSurface.withOpacity(0.7),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.download),
@@ -77,6 +110,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 id: DateTime.now().millisecondsSinceEpoch.toString(),
                 text: 'This is a received message!',
                 senderId: 'user2',
+                senderName: 'Friend',
                 timestamp: DateTime.now(),
               );
               context.read<ChatProvider>().addMessage(newMessage);
@@ -95,6 +129,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 return MessageList(
                   messages: chatProvider.messages,
                   currentUserId: ChatScreen.currentUserId,
+                  showAvatars: chatProvider.isGroupChat,
                   scrollController: _scrollController,
                   onMessageLongPress: _showOptionsSheet,
                 );
