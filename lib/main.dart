@@ -19,11 +19,17 @@ class ChatApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseTheme = ThemeData(
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      useMaterial3: true,
+    );
+
     return MaterialApp(
       title: 'Flutter Chat Template',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      theme: baseTheme.copyWith(
+        textTheme: baseTheme.textTheme.apply(
+          fontFamilyFallback: ['NotoColorEmoji'],
+        ),
       ),
       home: const ChatScreen(),
       debugShowCheckedModeBanner: false,
