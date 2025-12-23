@@ -50,5 +50,24 @@ void main() {
       expect(provider.messages, isEmpty);
       expect(notified, isTrue);
     });
+
+    test('should update chat context and notify listeners', () {
+      final provider = ChatProvider();
+      bool notified = false;
+      provider.addListener(() {
+        notified = true;
+      });
+
+      provider.setChatContext(
+        isGroupChat: true,
+        connectionPath: 'Path: Flood',
+        currentHandle: 'Test Channel',
+      );
+
+      expect(provider.isGroupChat, isTrue);
+      expect(provider.connectionPath, 'Path: Flood');
+      expect(provider.currentHandle, 'Test Channel');
+      expect(notified, isTrue);
+    });
   });
 }
