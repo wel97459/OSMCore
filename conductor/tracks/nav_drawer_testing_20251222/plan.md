@@ -6,11 +6,11 @@
 - [x] Task: Implement multi-session logic in `ChatProvider` 5bc2417
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Multi-Session State Support' (Protocol in workflow.md) 91adf90
 
-## Phase 2: App Drawer Widget
+## Phase 2: App Drawer Widget [checkpoint: 2f13b6e]
 - [x] Task: Create `AppDrawer` widget in `lib/widgets/app_drawer.dart` 3f7b450
 - [x] Task: Write Widget Tests for `AppDrawer` (Verify scenario items and tap handlers) 3f7b450
 - [x] Task: Implement `AppDrawer` UI according to Material Design 3 3f7b450
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: App Drawer Widget' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: App Drawer Widget' (Protocol in workflow.md) 2f13b6e
 
 ## Phase 3: Integrated Navigation and Initialization
 - [ ] Task: Integrate `AppDrawer` into `ChatScreen`
