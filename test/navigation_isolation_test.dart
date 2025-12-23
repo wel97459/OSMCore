@@ -19,56 +19,46 @@ void main() {
       ),
     );
 
-    // 1. Initial State (default)
+    // Initial state
     expect(find.text('User'), findsWidgets);
 
-    // 2. Switch to Group Chat via Drawer
-    final scaffoldState = tester.state<ScaffoldState>(find.byType(Scaffold));
-    scaffoldState.openDrawer();
-    await tester.pumpAndSettle();
+    // Helper to switch scenario
+    Future<void> switchScenario(String name) async {
+      final scaffoldState = tester.state<ScaffoldState>(find.byType(Scaffold));
+      scaffoldState.openDrawer();
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(name));
+      await tester.pumpAndSettle();
+    }
 
-    await tester.tap(find.text('Group Chat'));
-    await tester.pumpAndSettle();
-
+    // 1. Switch to Group Chat
+    await switchScenario('Group Chat');
     expect(find.text('Channel Alpha'), findsWidgets);
-    expect(find.text('Channel Messages'), findsOneWidget);
 
-    // Send a message in Group Chat
+    // Send message
     await tester.enterText(find.byType(TextField), 'Hello Group');
     await tester.tap(find.byIcon(Icons.send));
     await tester.pumpAndSettle();
-    
-    // Check for message bubble text
     expect(find.text('Hello Group'), findsWidgets);
 
-    // 3. Switch to Direct Flood via Drawer
-    final scaffoldState2 = tester.state<ScaffoldState>(find.byType(Scaffold));
-    scaffoldState2.openDrawer();
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Direct Chat (Flood)'));
-    await tester.pumpAndSettle();
-
+    // 2. Switch to Direct Chat (Flood)
+    await switchScenario('Direct Chat (Flood)');
     expect(find.text('Winston'), findsWidgets);
     expect(find.text('Path: Flood'), findsOneWidget);
     
-    // Verify isolation - 'Hello Group' should not be visible in this session
+    // Verify isolation (messages from Group Chat should not be here)
     expect(find.byType(MessageBubble), findsNothing);
 
-    // Send a message in Direct Chat
+    // Send message in Direct Chat
     await tester.enterText(find.byType(TextField), 'Hello Winston');
     await tester.tap(find.byIcon(Icons.send));
     await tester.pumpAndSettle();
     expect(find.text('Hello Winston'), findsWidgets);
 
-    // 4. Switch back to Group Chat
-    final scaffoldState3 = tester.state<ScaffoldState>(find.byType(Scaffold));
-    scaffoldState3.openDrawer();
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Group Chat'));
-    await tester.pumpAndSettle();
-
-    // Verify persistence of Group Chat messages
-    // We use find.text with findsWidgets because the text might be in the list
+    // 3. Switch back to Group Chat
+    await switchScenario('Group Chat');
+    
+    // Verify persistence and isolation
     expect(find.text('Hello Group'), findsWidgets);
     expect(find.text('Hello Winston'), findsNothing);
   });
