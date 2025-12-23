@@ -12,7 +12,13 @@
 - [x] Task: Implement font configuration in `ThemeData` be87c63
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Implementation and Configuration' (Protocol in workflow.md)
 
-## Phase 3: Verification
+## Phase 3: Fix Spacing Issues
+- [ ] Task: Download Roboto font
+- [ ] Task: Add Roboto to `assets/fonts/` and `pubspec.yaml`
+- [ ] Task: Update `lib/main.dart` to set Roboto as primary fontFamily
+- [ ] Task: Conductor - User Manual Verification 'Phase 3: Fix Spacing Issues' (Protocol in workflow.md)
+
+## Phase 4: Verification
 - [ ] Task: Verify emoji rendering in Message Bubbles (Manual Check required as part of protocol)
 - [ ] Task: Verify emoji rendering in Input Field (Manual Check required as part of protocol)
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Verification' (Protocol in workflow.md)
+- [ ] Task: Conductor - User Manual Verification 'Phase 4: Verification' (Protocol in workflow.md)
