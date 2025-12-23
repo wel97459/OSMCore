@@ -69,5 +69,30 @@ void main() {
       expect(provider.currentHandle, 'Test Channel');
       expect(notified, isTrue);
     });
+
+    test('should support multiple independent conversations', () {
+      final provider = ChatProvider();
+      
+      // Setup conversation 1
+      provider.setActiveConversation('conv1');
+      provider.setChatContext(currentHandle: 'User 1', isGroupChat: false);
+      provider.addMessage(ChatMessage(id: '1', text: 'Msg 1', senderId: 'u1', timestamp: DateTime.now()));
+
+      // Setup conversation 2
+      provider.setActiveConversation('conv2');
+      provider.setChatContext(currentHandle: 'User 2', isGroupChat: true);
+      provider.addMessage(ChatMessage(id: '2', text: 'Msg 2', senderId: 'u2', timestamp: DateTime.now()));
+
+      // Check isolation
+      provider.setActiveConversation('conv1');
+      expect(provider.currentHandle, 'User 1');
+      expect(provider.messages.length, 1);
+      expect(provider.messages.first.text, 'Msg 1');
+
+      provider.setActiveConversation('conv2');
+      expect(provider.currentHandle, 'User 2');
+      expect(provider.messages.length, 1);
+      expect(provider.messages.first.text, 'Msg 2');
+    });
   });
 }
