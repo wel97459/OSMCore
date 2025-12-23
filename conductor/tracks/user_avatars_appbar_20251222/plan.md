@@ -19,7 +19,7 @@
 - [x] Task: Update `MessageList` to pass necessary information to `MessageBubble` b3e9483
 - [x] Task: Conductor - User Manual Verification 'Phase 3: Message List and Bubble Updates' (Protocol in workflow.md) 50839cc
 
-## Phase 4: Dynamic AppBar
+## Phase 4: Dynamic AppBar [checkpoint: f1d5933]
 - [x] Task: Write Widget Tests for `ChatScreen` AppBar (Direct vs Group mode visuals) 010752e
 - [x] Task: Implement dynamic AppBar in `ChatScreen` 010752e
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Dynamic AppBar' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 4: Dynamic AppBar' (Protocol in workflow.md) f1d5933
