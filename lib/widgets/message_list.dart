@@ -5,6 +5,7 @@ import 'package:chat_template/widgets/message_bubble.dart';
 class MessageList extends StatelessWidget {
   final List<ChatMessage> messages;
   final String currentUserId;
+  final bool showAvatars;
   final ScrollController? scrollController;
   final Function(ChatMessage)? onMessageLongPress;
 
@@ -12,6 +13,7 @@ class MessageList extends StatelessWidget {
     super.key,
     required this.messages,
     required this.currentUserId,
+    this.showAvatars = false,
     this.scrollController,
     this.onMessageLongPress,
   });
@@ -27,6 +29,7 @@ class MessageList extends StatelessWidget {
         return MessageBubble(
           message: message,
           isMe: message.senderId == currentUserId,
+          showAvatar: showAvatars,
           onLongPress: onMessageLongPress != null
               ? () => onMessageLongPress!(message)
               : null,
