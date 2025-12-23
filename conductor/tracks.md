@@ -4,8 +4,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [~] Track: Byte-Limited Input (140 Bytes)
-*Link: [./conductor/tracks/byte_limit_input_20251222/](./conductor/tracks/byte_limit_input_20251222/)*
+## [~] Track: Better Emoji Font Support
+*Link: [./conductor/tracks/emoji_font_support_20251222/](./conductor/tracks/emoji_font_support_20251222/)*
 
 
 
