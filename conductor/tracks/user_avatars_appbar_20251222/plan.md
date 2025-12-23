@@ -1,7 +1,7 @@
 # Plan: User Avatars and Dynamic AppBar Status
 
 ## Phase 1: State Management and Utilities
-- [~] Task: Update `ChatProvider` with new properties (`isGroupChat`, `connectionPath`, `currentHandle`)
+- [x] Task: Update `ChatProvider` with new properties (`isGroupChat`, `connectionPath`, `currentHandle`) bb3b421
 - [ ] Task: Create Utility for deterministic color generation from strings
 - [ ] Task: Create Utility for emoji detection in strings
 - [ ] Task: Write Tests for new Utilities
