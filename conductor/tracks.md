@@ -4,8 +4,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [~] Track: User Avatars and Dynamic AppBar Status
-*Link: [./conductor/tracks/user_avatars_appbar_20251222/](./conductor/tracks/user_avatars_appbar_20251222/)*
+## [x] Track: Navigation Drawer for Chat Testing
+*Link: [./conductor/tracks/nav_drawer_testing_20251222/](./conductor/tracks/nav_drawer_testing_20251222/)*
 
 
 
