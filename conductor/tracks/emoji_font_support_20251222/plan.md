@@ -7,9 +7,9 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Asset Preparation' (Protocol in workflow.md) 8646085
 
 ## Phase 2: Implementation and Configuration
-- [ ] Task: Update `lib/main.dart` to include "Noto Color Emoji" in the font fallback list
-- [ ] Task: Write Widget Test to verify font family usage
-- [ ] Task: Implement font configuration in `ThemeData`
+- [x] Task: Update `lib/main.dart` to include "Noto Color Emoji" in the font fallback list be87c63
+- [x] Task: Write Widget Test to verify font family usage be87c63
+- [x] Task: Implement font configuration in `ThemeData` be87c63
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Implementation and Configuration' (Protocol in workflow.md)
 
 ## Phase 3: Verification
