@@ -20,7 +20,7 @@ void main() {
     );
 
     // 1. Initial State (default)
-    expect(find.text('User'), findsWidgets); // Might be more than one (title and status or something)
+    expect(find.text('User'), findsWidgets);
 
     // 2. Switch to Group Chat via Drawer
     final scaffoldState = tester.state<ScaffoldState>(find.byType(Scaffold));
@@ -42,7 +42,8 @@ void main() {
     expect(find.text('Hello Group'), findsWidgets);
 
     // 3. Switch to Direct Flood via Drawer
-    scaffoldState.openDrawer();
+    final scaffoldState2 = tester.state<ScaffoldState>(find.byType(Scaffold));
+    scaffoldState2.openDrawer();
     await tester.pumpAndSettle();
     await tester.tap(find.text('Direct Chat (Flood)'));
     await tester.pumpAndSettle();
@@ -50,8 +51,7 @@ void main() {
     expect(find.text('Winston'), findsWidgets);
     expect(find.text('Path: Flood'), findsOneWidget);
     
-    // Verify isolation - 'Hello Group' should only be in the Group Chat session
-    // Since we are in 'direct_flood' session now, it should be empty
+    // Verify isolation - 'Hello Group' should not be visible in this session
     expect(find.byType(MessageBubble), findsNothing);
 
     // Send a message in Direct Chat
@@ -61,12 +61,14 @@ void main() {
     expect(find.text('Hello Winston'), findsWidgets);
 
     // 4. Switch back to Group Chat
-    scaffoldState.openDrawer();
+    final scaffoldState3 = tester.state<ScaffoldState>(find.byType(Scaffold));
+    scaffoldState3.openDrawer();
     await tester.pumpAndSettle();
     await tester.tap(find.text('Group Chat'));
     await tester.pumpAndSettle();
 
     // Verify persistence of Group Chat messages
+    // We use find.text with findsWidgets because the text might be in the list
     expect(find.text('Hello Group'), findsWidgets);
     expect(find.text('Hello Winston'), findsNothing);
   });
