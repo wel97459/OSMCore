@@ -37,6 +37,7 @@ void main() {
 
     // Send message
     await tester.enterText(find.byType(TextField), 'Hello Group');
+    await tester.pump(); // Allow state to update _canSend
     await tester.tap(find.byIcon(Icons.send));
     await tester.pumpAndSettle();
     expect(find.text('Hello Group'), findsWidgets);
@@ -51,6 +52,7 @@ void main() {
 
     // Send message in Direct Chat
     await tester.enterText(find.byType(TextField), 'Hello Winston');
+    await tester.pump(); // Allow state to update _canSend
     await tester.tap(find.byIcon(Icons.send));
     await tester.pumpAndSettle();
     expect(find.text('Hello Winston'), findsWidgets);
