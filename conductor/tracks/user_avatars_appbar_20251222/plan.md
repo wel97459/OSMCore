@@ -8,10 +8,10 @@
 - [x] Task: Implement new Utilities dba2a94
 - [x] Task: Conductor - User Manual Verification 'Phase 1: State Management and Utilities' (Protocol in workflow.md) 56313f3
 
-## Phase 2: User Avatar Widget
+## Phase 2: User Avatar Widget [checkpoint: 391b2ec]
 - [x] Task: Write Widget Tests for `UserAvatar` (Verify emoji vs initial, background color consistency) fab2208
 - [x] Task: Implement `UserAvatar` widget fab2208
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: User Avatar Widget' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: User Avatar Widget' (Protocol in workflow.md) 391b2ec
 
 ## Phase 3: Message List and Bubble Updates
 - [ ] Task: Write Widget Tests for `MessageBubble` updates (Group chat avatar visibility)
