@@ -10,6 +10,8 @@ import 'package:chat_template/models/chat_message.dart';
 import 'package:chat_template/widgets/user_avatar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:chat_template/widgets/app_drawer.dart';
+
 class ChatScreen extends StatefulWidget {
   static const String currentUserId = 'user1';
 
@@ -21,6 +23,44 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final ScrollController _scrollController = ScrollController();
+
+  void _handleScenarioSelected(String scenarioId) {
+    final provider = context.read<ChatProvider>();
+    provider.setActiveConversation(scenarioId);
+
+    // Initialize scenario metadata if not already set
+    switch (scenarioId) {
+      case 'group':
+        provider.setChatContext(
+          isGroupChat: true,
+          currentHandle: 'Channel Alpha',
+        );
+        break;
+      case 'direct_direct':
+        provider.setChatContext(
+          isGroupChat: false,
+          currentHandle: 'Winston',
+          connectionPath: 'Path: Direct',
+        );
+        break;
+      case 'direct_flood':
+        provider.setChatContext(
+          isGroupChat: false,
+          currentHandle: 'Winston',
+          connectionPath: 'Path: Flood',
+        );
+        break;
+      case 'direct_3hops':
+        provider.setChatContext(
+          isGroupChat: false,
+          currentHandle: 'Winston',
+          connectionPath: 'Path: 3 Hops',
+        );
+        break;
+    }
+
+    Navigator.pop(context); // Close drawer
+  }
 
   void _scrollToBottom() {
     if (_scrollController.hasClients) {
@@ -110,13 +150,16 @@ class _ChatScreenState extends State<ChatScreen> {
                 id: DateTime.now().millisecondsSinceEpoch.toString(),
                 text: 'This is a received message!',
                 senderId: 'user2',
-                senderName: 'Friend',
+                senderName: chatProvider.isGroupChat ? 'Channel Member' : chatProvider.currentHandle,
                 timestamp: DateTime.now(),
               );
               context.read<ChatProvider>().addMessage(newMessage);
             },
           ),
         ],
+      ),
+      drawer: AppDrawer(
+        onScenarioSelected: _handleScenarioSelected,
       ),
       body: Column(
         children: [
