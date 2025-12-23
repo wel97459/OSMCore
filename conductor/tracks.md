@@ -4,8 +4,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [~] Track: Better Emoji Font Support
-*Link: [./conductor/tracks/emoji_font_support_20251222/](./conductor/tracks/emoji_font_support_20251222/)*
+## [~] Track: User Avatars and Dynamic AppBar Status
+*Link: [./conductor/tracks/user_avatars_appbar_20251222/](./conductor/tracks/user_avatars_appbar_20251222/)*
 
 
 
