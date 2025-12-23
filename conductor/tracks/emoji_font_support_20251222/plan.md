@@ -18,7 +18,7 @@
 - [x] Task: Update `lib/main.dart` to set Roboto as primary fontFamily 6e3046b
 - [x] Task: Conductor - User Manual Verification 'Phase 3: Fix Spacing Issues' (Protocol in workflow.md) 4cd81d9
 
-## Phase 4: Verification
-- [ ] Task: Verify emoji rendering in Message Bubbles (Manual Check required as part of protocol)
-- [ ] Task: Verify emoji rendering in Input Field (Manual Check required as part of protocol)
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Verification' (Protocol in workflow.md)
+## Phase 4: Verification [checkpoint: 02db41f]
+- [x] Task: Verify emoji rendering in Message Bubbles (Manual Check required as part of protocol) 02db41f
+- [x] Task: Verify emoji rendering in Input Field (Manual Check required as part of protocol) 02db41f
+- [x] Task: Conductor - User Manual Verification 'Phase 4: Verification' (Protocol in workflow.md) 02db41f
