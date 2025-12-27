@@ -19,6 +19,8 @@
 - [x] Task: Refactor `ChatInput` to `HookConsumerWidget` and use `useTextEditingController` 6c0ec0b
 - [x] Task: Refactor `AppDrawer` to `ConsumerWidget` to access Riverpod state 6c0ec0b
 - [x] Task: Refactor remaining widgets (`MessageList`, `UserAvatar`, etc.) to use Riverpod for state access 6c0ec0b
+- [x] Task: Implement draft storage in `ConversationState` and `ChatSession` 9c09fb7
+- [x] Task: Update `ChatInput` to sync with draft state 9c09fb7
 - [~] Task: Conductor - User Manual Verification 'Phase 3: Widget Refactoring (Flutter Hooks)' (Protocol in workflow.md)
 
 ## Phase 4: Test Suite Migration and Cleanup
