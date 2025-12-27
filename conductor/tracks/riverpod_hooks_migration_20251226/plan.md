@@ -23,9 +23,9 @@
 - [x] Task: Update `ChatInput` to sync with draft state 9c09fb7
 - [x] Task: Conductor - User Manual Verification 'Phase 3: Widget Refactoring (Flutter Hooks)' (Protocol in workflow.md) 76bbed3
 
-## Phase 4: Test Suite Migration and Cleanup
-- [ ] Task: Update all widget tests to wrap target widgets in `ProviderScope`
-- [ ] Task: Update unit tests to use Riverpod `ProviderContainer` patterns
-- [ ] Task: Verify overall code coverage is >80%
-- [ ] Task: Final project cleanup (remove unused imports, delete old `ChatProvider`)
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Test Suite Migration and Cleanup' (Protocol in workflow.md)
+## Phase 4: Test Suite Migration and Cleanup [checkpoint: ca95e7c]
+- [x] Task: Update all widget tests to wrap target widgets in `ProviderScope` ce75fbd
+- [x] Task: Update unit tests to use Riverpod `ProviderContainer` patterns 523c93c
+- [x] Task: Verify overall code coverage is >80% 73d5781
+- [x] Task: Final project cleanup (remove unused imports, delete old `ChatProvider`) 73d5781
+- [x] Task: Conductor - User Manual Verification 'Phase 4: Test Suite Migration and Cleanup' (Protocol in workflow.md) ca95e7c
