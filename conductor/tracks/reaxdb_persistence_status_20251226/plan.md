@@ -14,9 +14,9 @@
 - [x] Task: Write Integration Tests verifying state persistence across "restarts" (re-initializing provider) 48684
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Hybrid Synchronization (Riverpod <-> ReaxDB)' (Protocol in workflow.md) 677a970
 
-## Phase 3: Stateful Message Lifecycle
+## Phase 3: Stateful Message Lifecycle [checkpoint: 7f72092]
 - [x] Task: Create a `useMessageSender` hook (or similar logic) to handle automatic status progression 731dd7e
 - [x] Task: Integrate the sending logic into `ChatScreen` or `ChatSession` 731dd7e
 - [x] Task: Ensure status updates are persisted to ReaxDB 731dd7e
 - [x] Task: Write Widget Tests for the message lifecycle (verify status transitions) 731dd7e
-- [~] Task: Conductor - User Manual Verification 'Phase 3: Stateful Message Lifecycle' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Stateful Message Lifecycle' (Protocol in workflow.md) 7f72092
