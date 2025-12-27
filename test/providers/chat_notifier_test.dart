@@ -61,5 +61,35 @@ void main() {
       expect(state.connectionPath, 'Path: Flood');
       expect(state.currentHandle, 'Test Channel');
     });
+
+    test('should support multiple independent conversations', () {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+      
+      final notifier = container.read(chatSessionProvider.notifier);
+
+      // Setup conversation 1
+      notifier.setActiveConversation('conv1');
+      notifier.setChatContext(currentHandle: 'User 1', isGroupChat: false);
+      notifier.addMessage(ChatMessage(id: '1', text: 'Msg 1', senderId: 'u1', timestamp: DateTime.now()));
+
+      // Setup conversation 2
+      notifier.setActiveConversation('conv2');
+      notifier.setChatContext(currentHandle: 'User 2', isGroupChat: true);
+      notifier.addMessage(ChatMessage(id: '2', text: 'Msg 2', senderId: 'u2', timestamp: DateTime.now()));
+
+      // Check isolation
+      notifier.setActiveConversation('conv1');
+      var state = container.read(chatSessionProvider);
+      expect(state.currentHandle, 'User 1');
+      expect(state.messages.length, 1);
+      expect(state.messages.first.text, 'Msg 1');
+
+      notifier.setActiveConversation('conv2');
+      state = container.read(chatSessionProvider);
+      expect(state.currentHandle, 'User 2');
+      expect(state.messages.length, 1);
+      expect(state.messages.first.text, 'Msg 2');
+    });
   });
 }
