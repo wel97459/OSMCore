@@ -30,7 +30,7 @@ class MessageStatusLine extends StatelessWidget {
         icon = Icons.pending;
         break;
       case MessageStatus.sendingFloodAttempt:
-        text = 'Sending (attempt $attempt/5) ';
+        text = 'Sending (attempt $attempt/3) ';
         icon = Icons.pending;
         break;
       case MessageStatus.delivered:

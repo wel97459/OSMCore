@@ -144,6 +144,29 @@ class ChatSession extends _$ChatSession {
       
       // Persist status update
       await _database.saveConversation(state.activeConversationId, updatedConv);
+        }
+      }
+    
+      Future<void> updateMessageStatus(String messageId, MessageStatus status, {int? attempt}) async {
+        final activeConv = state.conversations[state.activeConversationId]!;
+        final index = activeConv.messages.indexWhere((m) => m.id == messageId);
+        
+        if (index != -1) {
+          final updatedMessage = activeConv.messages[index].copyWith(
+            status: status,
+            attempt: attempt,
+          );
+          final updatedMessages = List<ChatMessage>.from(activeConv.messages)..[index] = updatedMessage;
+          final updatedConv = activeConv.copyWith(messages: updatedMessages);
+    
+          final newConversations = Map<String, ConversationState>.from(state.conversations);
+          newConversations[state.activeConversationId] = updatedConv;
+    
+          state = state.copyWith(conversations: newConversations);
+          
+          // Persist status update
+          await _database.saveConversation(state.activeConversationId, updatedConv);
+        }
+      }
     }
-  }
-}
+    

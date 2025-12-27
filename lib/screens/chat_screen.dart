@@ -10,6 +10,7 @@ import 'package:chat_template/models/chat_message.dart';
 import 'package:chat_template/widgets/user_avatar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:chat_template/widgets/app_drawer.dart';
+import 'package:chat_template/utils/message_sender_hook.dart';
 
 class ChatScreen extends HookConsumerWidget {
   static const String currentUserId = 'user1';
@@ -21,6 +22,8 @@ class ChatScreen extends HookConsumerWidget {
     final theme = Theme.of(context);
     final chatState = ref.watch(chatSessionProvider);
     final scrollController = useScrollController();
+
+    useMessageSender(ref);
 
     void scrollToBottom() {
       if (scrollController.hasClients) {
