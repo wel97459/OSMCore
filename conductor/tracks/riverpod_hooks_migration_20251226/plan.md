@@ -15,11 +15,11 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Core State Migration (Riverpod)' (Protocol in workflow.md) 5739f57
 
 ## Phase 3: Widget Refactoring (Flutter Hooks)
-- [ ] Task: Refactor `ChatScreen` to `HookConsumerWidget` and use `useScrollController`
-- [ ] Task: Refactor `ChatInput` to `HookConsumerWidget` and use `useTextEditingController`
-- [ ] Task: Refactor `AppDrawer` to `ConsumerWidget` to access Riverpod state
-- [ ] Task: Refactor remaining widgets (`MessageList`, `UserAvatar`, etc.) to use Riverpod for state access
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Widget Refactoring (Flutter Hooks)' (Protocol in workflow.md)
+- [x] Task: Refactor `ChatScreen` to `HookConsumerWidget` and use `useScrollController` 6c0ec0b
+- [x] Task: Refactor `ChatInput` to `HookConsumerWidget` and use `useTextEditingController` 6c0ec0b
+- [x] Task: Refactor `AppDrawer` to `ConsumerWidget` to access Riverpod state 6c0ec0b
+- [x] Task: Refactor remaining widgets (`MessageList`, `UserAvatar`, etc.) to use Riverpod for state access 6c0ec0b
+- [~] Task: Conductor - User Manual Verification 'Phase 3: Widget Refactoring (Flutter Hooks)' (Protocol in workflow.md)
 
 ## Phase 4: Test Suite Migration and Cleanup
 - [ ] Task: Update all widget tests to wrap target widgets in `ProviderScope`
