@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:chat_template/models/chat_message.dart';
 import 'package:chat_template/utils/date_formatter.dart';
 import 'package:chat_template/widgets/message_status_line.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:chat_template/widgets/user_avatar.dart';
 

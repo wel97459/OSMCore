@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:chat_template/widgets/message_status_line.dart';
 import 'package:chat_template/models/chat_message.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   testWidgets('MessageStatusLine displays Sent status correctly', (WidgetTester tester) async {

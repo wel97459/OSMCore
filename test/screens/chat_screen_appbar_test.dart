@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:chat_template/screens/chat_screen.dart';
 import 'package:chat_template/providers/chat_notifier.dart';
-import 'package:chat_template/providers/chat_state.dart';
 import 'package:chat_template/widgets/user_avatar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
