@@ -1,11 +1,7 @@
 enum MessageStatus {
   sending,
-  sending_attempt1,
-  sending_attempt2,
-  sending_attempt3,
-  sending_attempt4,
-  sending_flood_attempt1,
-  sending_flood_attempt2,
+  sendingAttempt,
+  sendingFloodAttempt,
   delivered,
   failed,
 }
@@ -17,6 +13,7 @@ class ChatMessage {
   final String senderName;
   final DateTime timestamp;
   final MessageStatus status;
+  final int attempt;
 
   ChatMessage({
     required this.id,
@@ -25,6 +22,7 @@ class ChatMessage {
     this.senderName = "User",
     required this.timestamp,
     this.status = MessageStatus.sending,
+    this.attempt = 0,
   });
 
   ChatMessage copyWith({
@@ -34,6 +32,7 @@ class ChatMessage {
     String? senderName,
     DateTime? timestamp,
     MessageStatus? status,
+    int? attempt,
   }) {
     return ChatMessage(
       id: id ?? this.id,
@@ -42,6 +41,7 @@ class ChatMessage {
       senderName: senderName ?? this.senderName,
       timestamp: timestamp ?? this.timestamp,
       status: status ?? this.status,
+      attempt: attempt ?? this.attempt,
     );
   }
 }

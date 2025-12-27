@@ -3,10 +3,12 @@ import 'package:chat_template/models/chat_message.dart';
 
 class MessageStatusLine extends StatelessWidget {
   final MessageStatus status;
+  final int attempt;
 
   const MessageStatusLine({
     super.key,
     required this.status,
+    required this.attempt,
   });
 
   @override
@@ -23,28 +25,12 @@ class MessageStatusLine extends StatelessWidget {
         text = 'Sending ';
         icon = Icons.pending;
         break;
-      case MessageStatus.sending_attempt1:
-        text = 'Sending (attempt 2/5) ';
+      case MessageStatus.sendingAttempt:
+        text = 'Sending (attempt $attempt/5) ';
         icon = Icons.pending;
         break;
-      case MessageStatus.sending_attempt2:
-        text = 'Sending (attempt 3/5) ';
-        icon = Icons.pending;
-        break;
-      case MessageStatus.sending_attempt3:
-        text = 'Sending (attempt 4/5) ';
-        icon = Icons.pending;
-        break;
-      case MessageStatus.sending_attempt4:
-        text = 'Sending (attempt 5/5) ';
-        icon = Icons.pending;
-        break;
-      case MessageStatus.sending_flood_attempt1:
-        text = 'Sending (attempt 2/3) ';
-        icon = Icons.pending;
-        break;
-      case MessageStatus.sending_flood_attempt2:
-        text = 'Sending (attempt 3/3) ';
+      case MessageStatus.sendingFloodAttempt:
+        text = 'Sending (attempt $attempt/5) ';
         icon = Icons.pending;
         break;
       case MessageStatus.delivered:

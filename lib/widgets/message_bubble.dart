@@ -79,7 +79,7 @@ class MessageBubble extends StatelessWidget {
         ),
         if (isMe) ...[
           const SizedBox(height: 2),
-          MessageStatusLine(status: message.status),
+          MessageStatusLine(status: message.status, attempt: message.attempt),
         ],
       ],
     );
