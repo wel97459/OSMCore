@@ -110,6 +110,7 @@ class ChatScreen extends HookConsumerWidget {
                 senderId: 'user2',
                 senderName: chatState.isGroupChat ? 'Baddie' : chatState.currentHandle,
                 timestamp: DateTime.now(),
+                status: chatState.isGroupChat ? MessageStatus.sent : MessageStatus.sending
               );
               ref.read(chatSessionProvider.notifier).addMessage(newMessage);
             },
@@ -132,6 +133,7 @@ class ChatScreen extends HookConsumerWidget {
             ),
           ),
           ChatInput(
+            maxBytes: chatState.isGroupChat ? 139 : 150,
             onSend: (text) {
               final newMessage = ChatMessage(
                 id: DateTime.now().millisecondsSinceEpoch.toString(),

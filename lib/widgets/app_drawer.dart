@@ -27,6 +27,7 @@ class AppDrawer extends ConsumerWidget {
       case 'direct_flood':
         notifier.setChatContext(
           isGroupChat: false,
+          isFlood: true,
           currentHandle: 'sard',
           connectionPath: 'Path: Flood',
         );

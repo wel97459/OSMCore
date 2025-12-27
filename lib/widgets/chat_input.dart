@@ -7,11 +7,12 @@ import '../utils/byte_limit_input_formatter.dart';
 
 class ChatInput extends HookConsumerWidget {
   final Function(String) onSend;
-  static const int _maxBytes = 140;
+  final int maxBytes;
 
   const ChatInput({
     super.key,
     required this.onSend,
+    this.maxBytes = 140,
   });
 
   @override
@@ -40,7 +41,7 @@ class ChatInput extends HookConsumerWidget {
     useEffect(() {
       void listener() {
         currentBytes.value = ByteCounter.countBytes(controller.text);
-        canSend.value = controller.text.trim().isNotEmpty && currentBytes.value <= _maxBytes;
+        canSend.value = controller.text.trim().isNotEmpty && currentBytes.value <= maxBytes;
         
         // Update draft in state (debounce or direct? Direct for now as local state is cheap)
         // Check to avoid infinite loop if the state update triggers a rebuild that triggers this
@@ -54,7 +55,7 @@ class ChatInput extends HookConsumerWidget {
 
     void handleSend() {
       final text = controller.text.trim();
-      if (text.isNotEmpty && ByteCounter.countBytes(text) <= _maxBytes) {
+      if (text.isNotEmpty && ByteCounter.countBytes(text) <= maxBytes) {
         onSend(text);
         controller.clear();
         ref.read(chatSessionProvider.notifier).updateDraft(''); // Clear draft
@@ -92,7 +93,7 @@ class ChatInput extends HookConsumerWidget {
                     textCapitalization: TextCapitalization.sentences,
                     onSubmitted: (_) => handleSend(),
                     inputFormatters: [
-                      ByteLimitInputFormatter(_maxBytes),
+                      ByteLimitInputFormatter(maxBytes),
                     ],
                   ),
                 ),
@@ -109,7 +110,7 @@ class ChatInput extends HookConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    '${currentBytes.value}/$_maxBytes bytes',
+                    '${currentBytes.value}/$maxBytes bytes',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.outline,
                     ),

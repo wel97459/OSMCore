@@ -37,6 +37,14 @@ class MessageStatusLine extends StatelessWidget {
         text = 'Delivered ';
         icon = Icons.check_circle;
         break;
+      case MessageStatus.sent:
+        text = 'Sent ';
+        icon = Icons.check_circle_outline;
+        break;
+      case MessageStatus.heard:
+        text = attempt > 1 ? "Heard $attempt repeats " : "Heard $attempt repeat ";
+        icon = Icons.check_circle;
+        break;
       case MessageStatus.failed:
         text = 'Failed ';
         icon = Icons.error;

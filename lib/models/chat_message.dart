@@ -3,6 +3,8 @@ enum MessageStatus {
   sendingAttempt,
   sendingFloodAttempt,
   delivered,
+  sent,
+  heard,
   failed,
 }
 

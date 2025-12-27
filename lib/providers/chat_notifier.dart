@@ -66,12 +66,14 @@ class ChatSession extends _$ChatSession {
 
   Future<void> setChatContext({
     bool? isGroupChat,
+    bool? isFlood,
     String? connectionPath,
     String? currentHandle,
   }) async {
     final activeConv = state.conversations[state.activeConversationId]!;
     final updatedConv = activeConv.copyWith(
       isGroupChat: isGroupChat,
+      isFlood: isFlood,
       connectionPath: connectionPath,
       currentHandle: currentHandle,
     );
