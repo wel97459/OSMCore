@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:chat_template/widgets/chat_input.dart';
 
 void main() {
   testWidgets('ChatInput limits input to 140 bytes', (WidgetTester tester) async {
     await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: ChatInput(onSend: (_) {}),
+      ProviderScope(
+        child: MaterialApp(
+          home: Scaffold(
+            body: ChatInput(onSend: (_) {}),
+          ),
         ),
       ),
     );
@@ -23,9 +26,11 @@ void main() {
 
   testWidgets('ChatInput handles emojis in byte limit correctly', (WidgetTester tester) async {
     await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: ChatInput(onSend: (_) {}),
+      ProviderScope(
+        child: MaterialApp(
+          home: Scaffold(
+            body: ChatInput(onSend: (_) {}),
+          ),
         ),
       ),
     );
@@ -39,15 +44,16 @@ void main() {
 
     final textField = tester.widget<TextField>(find.byType(TextField));
     // It should be truncated to exactly 35 emojis.
-    // Note: Emoji length in String might be 2 (surrogate pair).
     expect(textField.controller?.text, thirtyFiveEmojis);
   });
 
   testWidgets('ChatInput displays byte counter', (WidgetTester tester) async {
     await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: ChatInput(onSend: (_) {}),
+      ProviderScope(
+        child: MaterialApp(
+          home: Scaffold(
+            body: ChatInput(onSend: (_) {}),
+          ),
         ),
       ),
     );

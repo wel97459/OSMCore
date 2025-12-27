@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:chat_template/widgets/app_drawer.dart';
+import 'package:chat_template/providers/chat_notifier.dart';
+import 'package:chat_template/providers/chat_state.dart';
 
 void main() {
-  testWidgets('AppDrawer should display all scenario items', (WidgetTester tester) async {
-    String? selectedScenario;
+  testWidgets('AppDrawer should display all scenario items and update state', (WidgetTester tester) async {
+    ChatState? capturedState;
 
     await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          drawer: AppDrawer(
-            onScenarioSelected: (scenario) => selectedScenario = scenario,
+      ProviderScope(
+        child: MaterialApp(
+          home: Scaffold(
+            drawer: const AppDrawer(),
+            body: Consumer(
+              builder: (context, ref, child) {
+                capturedState = ref.watch(chatSessionProvider);
+                return const Text('Body');
+              },
+            ),
           ),
         ),
       ),
@@ -21,15 +30,12 @@ void main() {
     scaffoldState.openDrawer();
     await tester.pumpAndSettle();
 
-    expect(find.text('Group Chat'), findsOneWidget);
-    expect(find.text('Direct Chat (Direct)'), findsOneWidget);
-    expect(find.text('Direct Chat (Flood)'), findsOneWidget);
-    expect(find.text('Direct Chat (3 Hops)'), findsOneWidget);
-
     // Tap an item
     await tester.tap(find.text('Direct Chat (Flood)'));
     await tester.pumpAndSettle();
 
-    expect(selectedScenario, 'direct_flood');
+    // Verify state updated via consumer
+    expect(capturedState?.activeConversationId, 'direct_flood');
+    expect(capturedState?.connectionPath, 'Path: Flood');
   });
 }

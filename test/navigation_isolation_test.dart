@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:provider/provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:chat_template/screens/chat_screen.dart';
-import 'package:chat_template/providers/chat_provider.dart';
-import 'package:chat_template/widgets/app_drawer.dart';
 import 'package:chat_template/widgets/message_bubble.dart';
 
 void main() {
   testWidgets('Navigation and isolation test', (WidgetTester tester) async {
-    final chatProvider = ChatProvider();
-
     await tester.pumpWidget(
-      MaterialApp(
-        home: ChangeNotifierProvider<ChatProvider>.value(
-          value: chatProvider,
-          child: const ChatScreen(),
+      const ProviderScope(
+        child: MaterialApp(
+          home: ChatScreen(),
         ),
       ),
     );
 
-    // Initial state
+    // Initial state (default chat)
     expect(find.text('User'), findsWidgets);
 
     // Helper to switch scenario
@@ -33,35 +28,35 @@ void main() {
 
     // 1. Switch to Group Chat
     await switchScenario('Group Chat');
-    expect(find.text('Channel Alpha'), findsWidgets);
+    expect(find.text('Public'), findsWidgets);
 
     // Send message
     await tester.enterText(find.byType(TextField), 'Hello Group');
-    await tester.pump(); // Allow state to update _canSend
+    await tester.pump(); 
     await tester.tap(find.byIcon(Icons.send));
     await tester.pumpAndSettle();
     expect(find.text('Hello Group'), findsWidgets);
 
     // 2. Switch to Direct Chat (Flood)
     await switchScenario('Direct Chat (Flood)');
-    expect(find.text('Winston'), findsWidgets);
+    expect(find.text('sard'), findsWidgets);
     expect(find.text('Path: Flood'), findsOneWidget);
     
     // Verify isolation (messages from Group Chat should not be here)
     expect(find.byType(MessageBubble), findsNothing);
 
     // Send message in Direct Chat
-    await tester.enterText(find.byType(TextField), 'Hello Winston');
-    await tester.pump(); // Allow state to update _canSend
+    await tester.enterText(find.byType(TextField), 'Hello sard');
+    await tester.pump(); 
     await tester.tap(find.byIcon(Icons.send));
     await tester.pumpAndSettle();
-    expect(find.text('Hello Winston'), findsWidgets);
+    expect(find.text('Hello sard'), findsWidgets);
 
     // 3. Switch back to Group Chat
     await switchScenario('Group Chat');
     
     // Verify persistence and isolation
     expect(find.text('Hello Group'), findsWidgets);
-    expect(find.text('Hello Winston'), findsNothing);
+    expect(find.text('Hello sard'), findsNothing);
   });
 }

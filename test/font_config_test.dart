@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:provider/provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:chat_template/main.dart';
-import 'package:chat_template/providers/chat_provider.dart';
 
 void main() {
   testWidgets('ChatApp theme includes NotoColorEmoji in fontFamilyFallback and Roboto as primary', (WidgetTester tester) async {
     await tester.pumpWidget(
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => ChatProvider()),
-        ],
-        child: const ChatApp(),
+      const ProviderScope(
+        child: ChatApp(),
       ),
     );
     
