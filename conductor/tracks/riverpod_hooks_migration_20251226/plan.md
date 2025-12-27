@@ -1,11 +1,11 @@
 # Plan: Migration to Riverpod and Flutter Hooks
 
-## Phase 1: Dependency and Infrastructure Setup [checkpoint: setup_complete]
+## Phase 1: Dependency and Infrastructure Setup [checkpoint: 7e47d02]
 - [x] Task: Add `hooks_riverpod`, `flutter_hooks`, and `riverpod_annotation` to `pubspec.yaml` 3f9e846
 - [x] Task: Add `riverpod_generator`, `build_runner`, and `custom_lint` to `dev_dependencies` 3f9e846
 - [x] Task: Remove `provider` from `pubspec.yaml` 3f9e846
 - [x] Task: Initialize Riverpod `ProviderScope` in `main.dart` 3f9e846
-- [~] Task: Conductor - User Manual Verification 'Phase 1: Dependency and Infrastructure Setup' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Dependency and Infrastructure Setup' (Protocol in workflow.md) 7e47d02
 
 ## Phase 2: Core State Migration (Riverpod)
 - [ ] Task: Create new Riverpod-based `ChatNotifier` using `@riverpod` annotations (Refactor from `ChatProvider`)
