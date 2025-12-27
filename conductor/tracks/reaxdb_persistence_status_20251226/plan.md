@@ -1,11 +1,11 @@
 # Plan: ReaxDB Persistence and Stateful Message Status
 
-## Phase 1: ReaxDB Setup and Schema Definition [checkpoint: db_setup]
+## Phase 1: ReaxDB Setup and Schema Definition [checkpoint: 627e543]
 - [x] Task: Add `reaxdb_dart` to `pubspec.yaml` d6c96d9
 - [x] Task: Create ReaxDB schema definitions for `Conversation` and `ChatMessage` 46300
 - [x] Task: Implement a database service/provider to initialize and expose the ReaxDB instance 46300
 - [x] Task: Write Unit Tests for ReaxDB schema and initialization 46766
-- [~] Task: Conductor - User Manual Verification 'Phase 1: ReaxDB Setup and Schema Definition' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: ReaxDB Setup and Schema Definition' (Protocol in workflow.md) 627e543
 
 ## Phase 2: Hybrid Synchronization (Riverpod <-> ReaxDB)
 - [ ] Task: Update `ChatSession` to load initial state from ReaxDB
