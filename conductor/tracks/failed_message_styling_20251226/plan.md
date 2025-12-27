@@ -7,10 +7,10 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Model and State Preparation' (Protocol in workflow.md) cb69b38
 
 ## Phase 2: Visual Implementation (Red Bubbles)
-- [ ] Task: Update `MessageBubble` to support conditional styling for failed status
-- [ ] Task: Update `MessageStatusLine` to display error icon and text for failed status
-- [ ] Task: Write Widget Tests for `MessageBubble` failed state (Verify red background and white text)
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Visual Implementation (Red Bubbles)' (Protocol in workflow.md)
+- [x] Task: Update `MessageBubble` to support conditional styling for failed status
+- [x] Task: Update `MessageStatusLine` to display error icon and text for failed status
+- [x] Task: Write Widget Tests for `MessageBubble` failed state (Verify red background and white text)
+- [~] Task: Conductor - User Manual Verification 'Phase 2: Visual Implementation (Red Bubbles)' (Protocol in workflow.md)
 
 ## Phase 3: Interaction and Retry Functionality
 - [ ] Task: Implement tap listener on `MessageBubble` for retry logic

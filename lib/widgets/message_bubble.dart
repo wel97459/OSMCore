@@ -24,6 +24,8 @@ class MessageBubble extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
+    final isFailed = message.status == MessageStatus.failed;
+
     final bubble = Column(
       crossAxisAlignment:
           isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
@@ -34,9 +36,9 @@ class MessageBubble extends StatelessWidget {
           ),
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
           decoration: BoxDecoration(
-            color: isMe
-                ? colorScheme.primaryContainer
-                : colorScheme.surfaceVariant,
+            color: isFailed 
+                ? colorScheme.error
+                : (isMe ? colorScheme.primaryContainer : colorScheme.surfaceVariant),
             borderRadius: BorderRadius.only(
               topLeft: const Radius.circular(16),
               topRight: const Radius.circular(16),
@@ -55,18 +57,18 @@ class MessageBubble extends StatelessWidget {
               Text(
                 message.text,
                 style: theme.textTheme.bodyLarge?.copyWith(
-                  color: isMe
-                      ? colorScheme.onPrimaryContainer
-                      : colorScheme.onSurfaceVariant,
+                  color: isFailed
+                      ? colorScheme.onError
+                      : (isMe ? colorScheme.onPrimaryContainer : colorScheme.onSurfaceVariant),
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 formatMessageDate(message.timestamp),
                 style: theme.textTheme.labelSmall?.copyWith(
-                  color: (isMe
-                          ? colorScheme.onPrimaryContainer
-                          : colorScheme.onSurfaceVariant)
+                  color: (isFailed
+                          ? colorScheme.onError
+                          : (isMe ? colorScheme.onPrimaryContainer : colorScheme.onSurfaceVariant))
                       .withOpacity(0.7),
                 ),
               ),

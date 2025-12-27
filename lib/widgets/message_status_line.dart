@@ -12,23 +12,48 @@ class MessageStatusLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final color = theme.colorScheme.onSurfaceVariant;
+    final isFailed = status == MessageStatus.failed;
+    final color = isFailed ? theme.colorScheme.onError : theme.colorScheme.onSurfaceVariant;
     
     String text;
     IconData icon;
 
     switch (status) {
-      case MessageStatus.sent:
-        text = 'Sent';
-        icon = Icons.check;
+      case MessageStatus.sending:
+        text = 'Sending ';
+        icon = Icons.pending;
+        break;
+      case MessageStatus.sending_attempt1:
+        text = 'Sending (attempt 2/5) ';
+        icon = Icons.pending;
+        break;
+      case MessageStatus.sending_attempt2:
+        text = 'Sending (attempt 3/5) ';
+        icon = Icons.pending;
+        break;
+      case MessageStatus.sending_attempt3:
+        text = 'Sending (attempt 4/5) ';
+        icon = Icons.pending;
+        break;
+      case MessageStatus.sending_attempt4:
+        text = 'Sending (attempt 5/5) ';
+        icon = Icons.pending;
+        break;
+      case MessageStatus.sending_flood_attempt1:
+        text = 'Sending (attempt 2/3) ';
+        icon = Icons.pending;
+        break;
+      case MessageStatus.sending_flood_attempt2:
+        text = 'Sending (attempt 3/3) ';
+        icon = Icons.pending;
         break;
       case MessageStatus.delivered:
-        text = 'Delivered';
-        icon = Icons.done_all;
+        text = 'Delivered ';
+        icon = Icons.check_circle;
         break;
-      case MessageStatus.read:
-        text = 'Read';
-        icon = Icons.done_all;
+      case MessageStatus.failed:
+        text = 'Failed ';
+        icon = Icons.error;
         break;
     }
 
