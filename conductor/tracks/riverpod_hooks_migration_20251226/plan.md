@@ -1,10 +1,10 @@
 # Plan: Migration to Riverpod and Flutter Hooks
 
 ## Phase 1: Dependency and Infrastructure Setup [checkpoint: setup_complete]
-- [x] Task: Add `hooks_riverpod`, `flutter_hooks`, and `riverpod_annotation` to `pubspec.yaml`
-- [x] Task: Add `riverpod_generator`, `build_runner`, and `custom_lint` to `dev_dependencies`
-- [x] Task: Remove `provider` from `pubspec.yaml`
-- [x] Task: Initialize Riverpod `ProviderScope` in `main.dart`
+- [x] Task: Add `hooks_riverpod`, `flutter_hooks`, and `riverpod_annotation` to `pubspec.yaml` 3f9e846
+- [x] Task: Add `riverpod_generator`, `build_runner`, and `custom_lint` to `dev_dependencies` 3f9e846
+- [x] Task: Remove `provider` from `pubspec.yaml` 3f9e846
+- [x] Task: Initialize Riverpod `ProviderScope` in `main.dart` 3f9e846
 - [~] Task: Conductor - User Manual Verification 'Phase 1: Dependency and Infrastructure Setup' (Protocol in workflow.md)
 
 ## Phase 2: Core State Migration (Riverpod)
