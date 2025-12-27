@@ -26,4 +26,34 @@ void main() {
     expect(find.text('Msg 1'), findsOneWidget);
     expect(find.text('Msg 2'), findsOneWidget);
   });
+
+  testWidgets('MessageList passes onMessageRetry to MessageBubble', (WidgetTester tester) async {
+    ChatMessage? retriedMessage;
+    final messages = [
+      ChatMessage(
+        id: '1',
+        text: 'Fail',
+        senderId: 'user1',
+        timestamp: DateTime.now(),
+        status: MessageStatus.failed,
+      ),
+    ];
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: MessageList(
+            messages: messages,
+            currentUserId: 'user1',
+            onMessageRetry: (msg) => retriedMessage = msg,
+          ),
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('Fail'));
+    await tester.pump();
+
+    expect(retriedMessage?.id, '1');
+  });
 }

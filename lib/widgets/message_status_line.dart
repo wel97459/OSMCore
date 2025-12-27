@@ -13,7 +13,7 @@ class MessageStatusLine extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isFailed = status == MessageStatus.failed;
-    final color = isFailed ? theme.colorScheme.onError : theme.colorScheme.onSurfaceVariant;
+    final color = isFailed ? theme.colorScheme.error : theme.colorScheme.onSurfaceVariant;
     
     String text;
     IconData icon;

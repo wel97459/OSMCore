@@ -4,17 +4,17 @@ import 'package:chat_template/widgets/message_status_line.dart';
 import 'package:chat_template/models/chat_message.dart';
 
 void main() {
-  testWidgets('MessageStatusLine displays Sent status correctly', (WidgetTester tester) async {
+  testWidgets('MessageStatusLine displays Sending status correctly', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: Scaffold(
-          body: MessageStatusLine(status: MessageStatus.sent),
+          body: MessageStatusLine(status: MessageStatus.sending),
         ),
       ),
     );
 
-    expect(find.text('Sent'), findsOneWidget);
-    expect(find.byIcon(Icons.check), findsOneWidget);
+    expect(find.text('Sending '), findsOneWidget);
+    expect(find.byIcon(Icons.pending), findsOneWidget);
   });
 
   testWidgets('MessageStatusLine displays Delivered status correctly', (WidgetTester tester) async {
@@ -26,20 +26,20 @@ void main() {
       ),
     );
 
-    expect(find.text('Delivered'), findsOneWidget);
-    expect(find.byIcon(Icons.done_all), findsOneWidget);
+    expect(find.text('Delivered '), findsOneWidget);
+    expect(find.byIcon(Icons.check_circle), findsOneWidget);
   });
 
-  testWidgets('MessageStatusLine displays Read status correctly', (WidgetTester tester) async {
+  testWidgets('MessageStatusLine displays Failed status correctly', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: Scaffold(
-          body: MessageStatusLine(status: MessageStatus.read),
+          body: MessageStatusLine(status: MessageStatus.failed),
         ),
       ),
     );
 
-    expect(find.text('Read'), findsOneWidget);
-    expect(find.byIcon(Icons.done_all), findsOneWidget);
+    expect(find.text('Failed '), findsOneWidget);
+    expect(find.byIcon(Icons.error), findsOneWidget);
   });
 }

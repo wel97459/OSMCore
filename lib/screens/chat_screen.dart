@@ -123,6 +123,9 @@ class ChatScreen extends HookConsumerWidget {
               showAvatars: chatState.isGroupChat,
               scrollController: scrollController,
               onMessageLongPress: showOptionsSheet,
+              onMessageRetry: (message) {
+                ref.read(chatSessionProvider.notifier).retryMessage(message);
+              },
             ),
           ),
           ChatInput(
@@ -132,6 +135,7 @@ class ChatScreen extends HookConsumerWidget {
                 text: text,
                 senderId: ChatScreen.currentUserId,
                 timestamp: DateTime.now(),
+                status: MessageStatus.failed,
               );
               ref.read(chatSessionProvider.notifier).addMessage(newMessage);
             },

@@ -8,6 +8,7 @@ class MessageList extends StatelessWidget {
   final bool showAvatars;
   final ScrollController? scrollController;
   final Function(ChatMessage)? onMessageLongPress;
+  final Function(ChatMessage)? onMessageRetry;
 
   const MessageList({
     super.key,
@@ -16,6 +17,7 @@ class MessageList extends StatelessWidget {
     this.showAvatars = false,
     this.scrollController,
     this.onMessageLongPress,
+    this.onMessageRetry,
   });
 
   @override
@@ -32,6 +34,9 @@ class MessageList extends StatelessWidget {
           showAvatar: showAvatars,
           onLongPress: onMessageLongPress != null
               ? () => onMessageLongPress!(message)
+              : null,
+          onRetry: onMessageRetry != null
+              ? () => onMessageRetry!(message)
               : null,
         );
       },

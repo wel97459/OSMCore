@@ -54,7 +54,7 @@ void main() {
       text: 'Status test',
       senderId: 'user1',
       timestamp: DateTime.now(),
-      status: MessageStatus.read,
+      status: MessageStatus.delivered,
     );
 
     await tester.pumpWidget(
@@ -68,7 +68,7 @@ void main() {
       ),
     );
 
-    expect(find.byIcon(Icons.done_all), findsOneWidget);
+    expect(find.byIcon(Icons.check_circle), findsOneWidget);
   });
 
   testWidgets('MessageBubble displays full date timestamp', (WidgetTester tester) async {
@@ -99,7 +99,7 @@ void main() {
       text: 'Sent message',
       senderId: 'user1',
       timestamp: DateTime.now(),
-      status: MessageStatus.sent,
+      status: MessageStatus.sending,
     );
 
     await tester.pumpWidget(
@@ -113,8 +113,8 @@ void main() {
       ),
     );
 
-    expect(find.text('Sent'), findsOneWidget);
-    expect(find.byIcon(Icons.check), findsOneWidget);
+    expect(find.text('Sending '), findsOneWidget);
+    expect(find.byIcon(Icons.pending), findsOneWidget);
   });
 
   testWidgets('MessageBubble does NOT display status line for received messages', (WidgetTester tester) async {
@@ -136,8 +136,8 @@ void main() {
       ),
     );
 
-    expect(find.text('Sent'), findsNothing);
-    expect(find.text('Delivered'), findsNothing);
-    expect(find.text('Read'), findsNothing);
+    expect(find.text('Sending '), findsNothing);
+    expect(find.text('Delivered '), findsNothing);
+    expect(find.text('Failed '), findsNothing);
   });
 }

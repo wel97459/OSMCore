@@ -43,4 +43,32 @@ void main() {
     final statusText = tester.widget<Text>(find.text('Failed '));
     expect(statusText.style?.color, theme.colorScheme.onError);
   });
+
+  testWidgets('MessageBubble calls onRetry when tapped and status is failed', (WidgetTester tester) async {
+    bool retryCalled = false;
+    final message = ChatMessage(
+      id: '1',
+      text: 'Failed Message',
+      senderId: 'user1',
+      timestamp: DateTime.now(),
+      status: MessageStatus.failed,
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: MessageBubble(
+            message: message,
+            isMe: true,
+            onRetry: () => retryCalled = true,
+          ),
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('Failed Message'));
+    await tester.pump();
+
+    expect(retryCalled, isTrue);
+  });
 }

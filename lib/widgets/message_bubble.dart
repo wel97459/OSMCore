@@ -10,6 +10,7 @@ class MessageBubble extends StatelessWidget {
   final bool isMe;
   final bool showAvatar;
   final VoidCallback? onLongPress;
+  final VoidCallback? onRetry;
 
   const MessageBubble({
     super.key,
@@ -17,6 +18,7 @@ class MessageBubble extends StatelessWidget {
     required this.isMe,
     this.showAvatar = false,
     this.onLongPress,
+    this.onRetry,
   });
 
   @override
@@ -84,6 +86,7 @@ class MessageBubble extends StatelessWidget {
 
     return GestureDetector(
       onLongPress: onLongPress,
+      onTap: isFailed ? onRetry : null,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         child: Row(
