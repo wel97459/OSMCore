@@ -4,11 +4,12 @@
 - **Flutter:** Latest stable version.
 
 ## State Management
-- **Provider:** For simple and flexible state management.
+- **Riverpod (with Code Generation):** For robust, type-safe global state management.
+- **Flutter Hooks:** For managing local widget state and reducing boilerplate.
 - **Dynamic Context:** Support for switching between Direct and Group chat modes with associated metadata (isGroupChat, connectionPath).
 
 ## Persistence
-- **In-Memory:** No local database; messages are stored in memory for this template.
+- **ReaxDB (reaxdb_dart):** Local NoSQL database for persistent storage of chat sessions and messages.
 
 ## Libraries
 - **Material 3:** Core UI components.

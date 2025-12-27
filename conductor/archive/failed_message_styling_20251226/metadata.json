@@ -1,0 +1,8 @@
+{
+  "track_id": "failed_message_styling_20251226",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2025-12-26T14:30:00Z",
+  "updated_at": "2025-12-26T14:30:00Z",
+  "description": "for MessageStatus.failed lets have the message bubble chage to red along with the along with the status text and icon"
+}
