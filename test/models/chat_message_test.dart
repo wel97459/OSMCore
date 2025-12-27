@@ -40,7 +40,74 @@ void main() {
         status: MessageStatus.failed,
       );
 
-      expect(message.status, MessageStatus.failed);
-    });
-  });
-}
+            expect(message.status, MessageStatus.failed);
+
+          });
+
+      
+
+          test('should support serialization to/from JSON', () {
+
+            final timestamp = DateTime(2025, 12, 26, 15, 0);
+
+            final message = ChatMessage(
+
+              id: '4',
+
+              text: 'Json Test',
+
+              senderId: 'user1',
+
+              senderName: 'Winston',
+
+              timestamp: timestamp,
+
+              status: MessageStatus.delivered,
+
+              attempt: 2,
+
+            );
+
+      
+
+            final json = message.toJson();
+
+            expect(json['id'], '4');
+
+            expect(json['text'], 'Json Test');
+
+            expect(json['senderId'], 'user1');
+
+            expect(json['senderName'], 'Winston');
+
+            expect(json['timestamp'], timestamp.toIso8601String());
+
+            expect(json['status'], 'delivered');
+
+            expect(json['attempt'], 2);
+
+      
+
+            final fromJson = ChatMessage.fromJson(json);
+
+            expect(fromJson.id, message.id);
+
+            expect(fromJson.text, message.text);
+
+            expect(fromJson.senderId, message.senderId);
+
+            expect(fromJson.senderName, message.senderName);
+
+            expect(fromJson.timestamp, message.timestamp);
+
+            expect(fromJson.status, message.status);
+
+            expect(fromJson.attempt, message.attempt);
+
+          });
+
+        });
+
+      }
+
+      

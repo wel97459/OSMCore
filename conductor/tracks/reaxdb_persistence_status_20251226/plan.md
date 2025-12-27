@@ -2,10 +2,10 @@
 
 ## Phase 1: ReaxDB Setup and Schema Definition [checkpoint: db_setup]
 - [x] Task: Add `reaxdb_dart` to `pubspec.yaml` d6c96d9
-- [ ] Task: Create ReaxDB schema definitions for `Conversation` and `ChatMessage`
-- [ ] Task: Implement a database service/provider to initialize and expose the ReaxDB instance
-- [ ] Task: Write Unit Tests for ReaxDB schema and initialization
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: ReaxDB Setup and Schema Definition' (Protocol in workflow.md)
+- [x] Task: Create ReaxDB schema definitions for `Conversation` and `ChatMessage` 46300
+- [x] Task: Implement a database service/provider to initialize and expose the ReaxDB instance 46300
+- [x] Task: Write Unit Tests for ReaxDB schema and initialization 46766
+- [~] Task: Conductor - User Manual Verification 'Phase 1: ReaxDB Setup and Schema Definition' (Protocol in workflow.md)
 
 ## Phase 2: Hybrid Synchronization (Riverpod <-> ReaxDB)
 - [ ] Task: Update `ChatSession` to load initial state from ReaxDB

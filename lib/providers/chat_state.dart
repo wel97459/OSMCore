@@ -30,6 +30,28 @@ class ConversationState {
       draft: draft ?? this.draft,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'messages': messages.map((m) => m.toJson()).toList(),
+      'isGroupChat': isGroupChat,
+      'connectionPath': connectionPath,
+      'currentHandle': currentHandle,
+      'draft': draft,
+    };
+  }
+
+  factory ConversationState.fromJson(Map<String, dynamic> json) {
+    return ConversationState(
+      messages: (json['messages'] as List)
+          .map((m) => ChatMessage.fromJson(m as Map<String, dynamic>))
+          .toList(),
+      isGroupChat: json['isGroupChat'] as bool,
+      connectionPath: json['connectionPath'] as String,
+      currentHandle: json['currentHandle'] as String,
+      draft: json['draft'] as String,
+    );
+  }
 }
 
 class ChatState {
