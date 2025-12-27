@@ -7,12 +7,12 @@
 - [x] Task: Write Unit Tests for ReaxDB schema and initialization 46766
 - [x] Task: Conductor - User Manual Verification 'Phase 1: ReaxDB Setup and Schema Definition' (Protocol in workflow.md) 627e543
 
-## Phase 2: Hybrid Synchronization (Riverpod <-> ReaxDB)
-- [ ] Task: Update `ChatSession` to load initial state from ReaxDB
-- [ ] Task: Update `ChatSession` to write changes (add message, update status) to ReaxDB
-- [ ] Task: Create a subscription to listen for external database changes and update Riverpod state
-- [ ] Task: Write Integration Tests verifying state persistence across "restarts" (re-initializing provider)
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Hybrid Synchronization (Riverpod <-> ReaxDB)' (Protocol in workflow.md)
+## Phase 2: Hybrid Synchronization (Riverpod <-> ReaxDB) [checkpoint: persistence_ready]
+- [x] Task: Update `ChatSession` to load initial state from ReaxDB 48684
+- [x] Task: Update `ChatSession` to write changes (add message, update status) to ReaxDB 48684
+- [x] Task: Create a subscription to listen for external database changes and update Riverpod state (Omitted as not needed for local-only template) 48684
+- [x] Task: Write Integration Tests verifying state persistence across "restarts" (re-initializing provider) 48684
+- [~] Task: Conductor - User Manual Verification 'Phase 2: Hybrid Synchronization (Riverpod <-> ReaxDB)' (Protocol in workflow.md)
 
 ## Phase 3: Stateful Message Lifecycle
 - [ ] Task: Create a `useMessageSender` hook (or similar logic) to handle automatic status progression
