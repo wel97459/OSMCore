@@ -138,7 +138,6 @@ class ChatScreen extends HookConsumerWidget {
                 text: text,
                 senderId: ChatScreen.currentUserId,
                 timestamp: DateTime.now(),
-                status: MessageStatus.failed,
               );
               ref.read(chatSessionProvider.notifier).addMessage(newMessage);
             },
