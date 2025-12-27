@@ -69,4 +69,14 @@ class ChatSession extends _$ChatSession {
 
     state = state.copyWith(conversations: newConversations);
   }
+
+  void updateDraft(String text) {
+    final activeConv = state.conversations[state.activeConversationId]!;
+    final updatedConv = activeConv.copyWith(draft: text);
+
+    final newConversations = Map<String, ConversationState>.from(state.conversations);
+    newConversations[state.activeConversationId] = updatedConv;
+
+    state = state.copyWith(conversations: newConversations);
+  }
 }

@@ -5,12 +5,14 @@ class ConversationState {
   final bool isGroupChat;
   final String connectionPath;
   final String currentHandle;
+  final String draft;
 
   const ConversationState({
     required this.messages,
     this.isGroupChat = false,
     this.connectionPath = "Path: Direct",
     this.currentHandle = "User",
+    this.draft = "",
   });
 
   ConversationState copyWith({
@@ -18,12 +20,14 @@ class ConversationState {
     bool? isGroupChat,
     String? connectionPath,
     String? currentHandle,
+    String? draft,
   }) {
     return ConversationState(
       messages: messages ?? this.messages,
       isGroupChat: isGroupChat ?? this.isGroupChat,
       connectionPath: connectionPath ?? this.connectionPath,
       currentHandle: currentHandle ?? this.currentHandle,
+      draft: draft ?? this.draft,
     );
   }
 }
@@ -41,6 +45,7 @@ class ChatState {
   bool get isGroupChat => conversations[activeConversationId]?.isGroupChat ?? false;
   String get connectionPath => conversations[activeConversationId]?.connectionPath ?? "Path: Direct";
   String get currentHandle => conversations[activeConversationId]?.currentHandle ?? "User";
+  String get currentDraft => conversations[activeConversationId]?.draft ?? "";
 
   ChatState copyWith({
     Map<String, ConversationState>? conversations,

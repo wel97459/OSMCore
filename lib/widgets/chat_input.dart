@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:chat_template/providers/chat_notifier.dart';
 import '../utils/byte_counter.dart';
 import '../utils/byte_limit_input_formatter.dart';
 
@@ -16,6 +17,7 @@ class ChatInput extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final chatState = ref.watch(chatSessionProvider);
     final controller = useTextEditingController();
     final focusNode = useFocusNode();
     
@@ -23,10 +25,28 @@ class ChatInput extends HookConsumerWidget {
     final currentBytes = useState(0);
     final canSend = useState(false);
 
+    // Sync controller with draft from state when active conversation changes
+    useEffect(() {
+      if (controller.text != chatState.currentDraft) {
+        controller.text = chatState.currentDraft;
+        // Move cursor to end
+        controller.selection = TextSelection.fromPosition(
+          TextPosition(offset: controller.text.length),
+        );
+      }
+      return null;
+    }, [chatState.activeConversationId]);
+
     useEffect(() {
       void listener() {
         currentBytes.value = ByteCounter.countBytes(controller.text);
         canSend.value = controller.text.trim().isNotEmpty && currentBytes.value <= _maxBytes;
+        
+        // Update draft in state (debounce or direct? Direct for now as local state is cheap)
+        // Check to avoid infinite loop if the state update triggers a rebuild that triggers this
+        if (ref.read(chatSessionProvider).currentDraft != controller.text) {
+           ref.read(chatSessionProvider.notifier).updateDraft(controller.text);
+        }
       }
       controller.addListener(listener);
       return () => controller.removeListener(listener);
@@ -37,6 +57,7 @@ class ChatInput extends HookConsumerWidget {
       if (text.isNotEmpty && ByteCounter.countBytes(text) <= _maxBytes) {
         onSend(text);
         controller.clear();
+        ref.read(chatSessionProvider.notifier).updateDraft(''); // Clear draft
         focusNode.requestFocus();
       }
     }
