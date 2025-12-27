@@ -12,8 +12,8 @@
 - [x] Task: Write Widget Tests for `MessageBubble` failed state (Verify red background and white text)
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Visual Implementation (Red Bubbles)' (Protocol in workflow.md) 93e253b
 
-## Phase 3: Interaction and Retry Functionality
+## Phase 3: Interaction and Retry Functionality [checkpoint: f5c3ff4]
 - [x] Task: Implement tap listener on `MessageBubble` for retry logic
 - [x] Task: Integrate `retryMessage` call when a failed bubble is tapped
 - [x] Task: Write Widget Tests for retry interaction (Verify status change on tap)
-- [~] Task: Conductor - User Manual Verification 'Phase 3: Interaction and Retry Functionality' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Interaction and Retry Functionality' (Protocol in workflow.md) f5c3ff4
