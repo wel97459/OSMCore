@@ -7,12 +7,12 @@
 - [x] Task: Initialize Riverpod `ProviderScope` in `main.dart` 3f9e846
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Dependency and Infrastructure Setup' (Protocol in workflow.md) 7e47d02
 
-## Phase 2: Core State Migration (Riverpod)
+## Phase 2: Core State Migration (Riverpod) [checkpoint: 5739f57]
 - [x] Task: Create new Riverpod-based `ChatNotifier` using `@riverpod` annotations (Refactor from `ChatProvider`) 1fa7886
 - [x] Task: Implement multi-session state logic in `ChatNotifier` 1fa7886
 - [x] Task: Run `build_runner` to generate providers 1fa7886
 - [x] Task: Write Unit Tests for `ChatNotifier` using `ProviderContainer` 1fa7886
-- [~] Task: Conductor - User Manual Verification 'Phase 2: Core State Migration (Riverpod)' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Core State Migration (Riverpod)' (Protocol in workflow.md) 5739f57
 
 ## Phase 3: Widget Refactoring (Flutter Hooks)
 - [ ] Task: Refactor `ChatScreen` to `HookConsumerWidget` and use `useScrollController`
