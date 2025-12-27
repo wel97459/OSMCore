@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../utils/byte_counter.dart';
 import '../utils/byte_limit_input_formatter.dart';
 
-class ChatInput extends StatefulWidget {
+class ChatInput extends HookConsumerWidget {
   final Function(String) onSend;
+  static const int _maxBytes = 140;
 
   const ChatInput({
     super.key,
@@ -12,49 +14,32 @@ class ChatInput extends StatefulWidget {
   });
 
   @override
-  State<ChatInput> createState() => _ChatInputState();
-}
-
-class _ChatInputState extends State<ChatInput> {
-  final _controller = TextEditingController();
-  final _focusNode = FocusNode();
-  bool _canSend = false;
-  int _currentBytes = 0;
-  static const int _maxBytes = 140;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller.addListener(_onTextChanged);
-  }
-
-  @override
-  void dispose() {
-    _controller.removeListener(_onTextChanged);
-    _controller.dispose();
-    _focusNode.dispose();
-    super.dispose();
-  }
-
-  void _onTextChanged() {
-    setState(() {
-      _currentBytes = ByteCounter.countBytes(_controller.text);
-      _canSend = _controller.text.trim().isNotEmpty && _currentBytes <= _maxBytes;
-    });
-  }
-
-  void _handleSend() {
-    final text = _controller.text.trim();
-    if (text.isNotEmpty && ByteCounter.countBytes(text) <= _maxBytes) {
-      widget.onSend(text);
-      _controller.clear();
-      _focusNode.requestFocus();
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final controller = useTextEditingController();
+    final focusNode = useFocusNode();
+    
+    // State for sendability and byte count
+    final currentBytes = useState(0);
+    final canSend = useState(false);
+
+    useEffect(() {
+      void listener() {
+        currentBytes.value = ByteCounter.countBytes(controller.text);
+        canSend.value = controller.text.trim().isNotEmpty && currentBytes.value <= _maxBytes;
+      }
+      controller.addListener(listener);
+      return () => controller.removeListener(listener);
+    }, [controller]);
+
+    void handleSend() {
+      final text = controller.text.trim();
+      if (text.isNotEmpty && ByteCounter.countBytes(text) <= _maxBytes) {
+        onSend(text);
+        controller.clear();
+        focusNode.requestFocus();
+      }
+    }
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -76,15 +61,15 @@ class _ChatInputState extends State<ChatInput> {
               children: [
                 Expanded(
                   child: TextField(
-                    controller: _controller,
-                    focusNode: _focusNode,
+                    controller: controller,
+                    focusNode: focusNode,
                     decoration: const InputDecoration(
                       hintText: 'Type a message...',
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     ),
                     textCapitalization: TextCapitalization.sentences,
-                    onSubmitted: (_) => _handleSend(),
+                    onSubmitted: (_) => handleSend(),
                     inputFormatters: [
                       ByteLimitInputFormatter(_maxBytes),
                     ],
@@ -93,7 +78,7 @@ class _ChatInputState extends State<ChatInput> {
                 IconButton(
                   icon: const Icon(Icons.send),
                   color: theme.colorScheme.primary,
-                  onPressed: _canSend ? _handleSend : null,
+                  onPressed: canSend.value ? handleSend : null,
                 ),
               ],
             ),
@@ -103,7 +88,7 @@ class _ChatInputState extends State<ChatInput> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    '$_currentBytes/$_maxBytes bytes',
+                    '${currentBytes.value}/$_maxBytes bytes',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.outline,
                     ),

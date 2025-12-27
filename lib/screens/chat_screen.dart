@@ -1,122 +1,77 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:chat_template/providers/chat_provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:chat_template/providers/chat_notifier.dart';
 import 'package:chat_template/widgets/message_list.dart';
 import 'package:chat_template/widgets/chat_input.dart';
 import 'package:chat_template/widgets/message_options_sheet.dart';
 import 'package:chat_template/models/chat_message.dart';
-
 import 'package:chat_template/widgets/user_avatar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:chat_template/widgets/app_drawer.dart';
 
-class ChatScreen extends StatefulWidget {
+class ChatScreen extends HookConsumerWidget {
   static const String currentUserId = 'user1';
 
   const ChatScreen({super.key});
 
   @override
-  State<ChatScreen> createState() => _ChatScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final chatState = ref.watch(chatSessionProvider);
+    final scrollController = useScrollController();
 
-class _ChatScreenState extends State<ChatScreen> {
-  final ScrollController _scrollController = ScrollController();
-
-  void _handleScenarioSelected(String scenarioId) {
-    final provider = context.read<ChatProvider>();
-    provider.setActiveConversation(scenarioId);
-
-    // Initialize scenario metadata if not already set
-    switch (scenarioId) {
-      case 'group':
-        provider.setChatContext(
-          isGroupChat: true,
-          currentHandle: 'Public',
+    void scrollToBottom() {
+      if (scrollController.hasClients) {
+        scrollController.animateTo(
+          scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
         );
-        break;
-      case 'direct_direct':
-        provider.setChatContext(
-          isGroupChat: false,
-          currentHandle: 'NU6O',
-          connectionPath: 'Path: Direct',
-        );
-        break;
-      case 'direct_flood':
-        provider.setChatContext(
-          isGroupChat: false,
-          currentHandle: 'sard',
-          connectionPath: 'Path: Flood',
-        );
-        break;
-      case 'direct_3hops':
-        provider.setChatContext(
-          isGroupChat: false,
-          currentHandle: 'Test',
-          connectionPath: 'Path: 3 Hops',
-        );
-        break;
+      }
     }
 
-    Navigator.pop(context); // Close drawer
-  }
+    // Scroll to bottom after the widget is built with new messages
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) => scrollToBottom());
+      return null;
+    }, [chatState.messages.length]);
 
-  void _scrollToBottom() {
-    if (_scrollController.hasClients) {
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
+    void showOptionsSheet(ChatMessage message) {
+      showModalBottomSheet(
+        context: context,
+        builder: (context) => MessageOptionsSheet(
+          message: message,
+          isMe: message.senderId == ChatScreen.currentUserId,
+          onDelete: () {
+            ref.read(chatSessionProvider.notifier).removeMessage(message);
+            Navigator.pop(context);
+          },
+          onCopy: () {
+            Clipboard.setData(ClipboardData(text: message.text)).then((_) {
+              if (context.mounted) {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Copied to clipboard'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
+            });
+          },
+        ),
       );
     }
-  }
-
-  void _showOptionsSheet(ChatMessage message) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => MessageOptionsSheet(
-        message: message,
-        isMe: message.senderId == ChatScreen.currentUserId,
-        onDelete: () {
-          context.read<ChatProvider>().removeMessage(message);
-          Navigator.pop(context);
-        },
-        onCopy: () {
-          Clipboard.setData(ClipboardData(text: message.text)).then((_) {
-            if (mounted) {
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Copied to clipboard'),
-                  duration: Duration(seconds: 2),
-                ),
-              );
-            }
-          });
-        },
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final chatProvider = context.watch<ChatProvider>();
 
     return Scaffold(
       appBar: AppBar(
         title: Row(
           children: [
             UserAvatar(
-              handle: chatProvider.currentHandle,
-              iconData: chatProvider.isGroupChat ? FontAwesomeIcons.peopleGroup : null,
+              handle: chatState.currentHandle,
+              iconData: chatState.isGroupChat ? FontAwesomeIcons.peopleGroup : null,
               size: 36,
             ),
             const SizedBox(width: 12),
@@ -126,12 +81,12 @@ class _ChatScreenState extends State<ChatScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    chatProvider.currentHandle,
+                    chatState.currentHandle,
                     style: theme.textTheme.titleMedium,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    chatProvider.isGroupChat ? "Channel Messages" : chatProvider.connectionPath,
+                    chatState.isGroupChat ? "Channel Messages" : chatState.connectionPath,
                     style: theme.textTheme.labelSmall?.copyWith(
                       color: theme.colorScheme.onSurface.withOpacity(0.7),
                     ),
@@ -150,33 +105,24 @@ class _ChatScreenState extends State<ChatScreen> {
                 id: DateTime.now().millisecondsSinceEpoch.toString(),
                 text: 'This is a received message!',
                 senderId: 'user2',
-                senderName: chatProvider.isGroupChat ? 'Baddie' : chatProvider.currentHandle,
+                senderName: chatState.isGroupChat ? 'Baddie' : chatState.currentHandle,
                 timestamp: DateTime.now(),
               );
-              context.read<ChatProvider>().addMessage(newMessage);
+              ref.read(chatSessionProvider.notifier).addMessage(newMessage);
             },
           ),
         ],
       ),
-      drawer: AppDrawer(
-        onScenarioSelected: _handleScenarioSelected,
-      ),
+      drawer: const AppDrawer(),
       body: Column(
         children: [
           Expanded(
-            child: Consumer<ChatProvider>(
-              builder: (context, chatProvider, child) {
-                // Scroll to bottom after the widget is built with new messages
-                WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
-
-                return MessageList(
-                  messages: chatProvider.messages,
-                  currentUserId: ChatScreen.currentUserId,
-                  showAvatars: chatProvider.isGroupChat,
-                  scrollController: _scrollController,
-                  onMessageLongPress: _showOptionsSheet,
-                );
-              },
+            child: MessageList(
+              messages: chatState.messages,
+              currentUserId: ChatScreen.currentUserId,
+              showAvatars: chatState.isGroupChat,
+              scrollController: scrollController,
+              onMessageLongPress: showOptionsSheet,
             ),
           ),
           ChatInput(
@@ -187,7 +133,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 senderId: ChatScreen.currentUserId,
                 timestamp: DateTime.now(),
               );
-              context.read<ChatProvider>().addMessage(newMessage);
+              ref.read(chatSessionProvider.notifier).addMessage(newMessage);
             },
           ),
         ],
