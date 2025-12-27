@@ -79,4 +79,20 @@ class ChatSession extends _$ChatSession {
 
     state = state.copyWith(conversations: newConversations);
   }
+
+  void retryMessage(ChatMessage message) {
+    final activeConv = state.conversations[state.activeConversationId]!;
+    final index = activeConv.messages.indexWhere((m) => m.id == message.id);
+    
+    if (index != -1) {
+      final updatedMessage = activeConv.messages[index].copyWith(status: MessageStatus.sending);
+      final updatedMessages = List<ChatMessage>.from(activeConv.messages)..[index] = updatedMessage;
+      final updatedConv = activeConv.copyWith(messages: updatedMessages);
+
+      final newConversations = Map<String, ConversationState>.from(state.conversations);
+      newConversations[state.activeConversationId] = updatedConv;
+
+      state = state.copyWith(conversations: newConversations);
+    }
+  }
 }

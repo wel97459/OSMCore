@@ -10,17 +10,17 @@ void main() {
         text: 'Hello',
         senderId: 'user1',
         timestamp: timestamp,
-        status: MessageStatus.sent,
+        status: MessageStatus.delivered,
       );
 
       expect(message.id, '1');
       expect(message.text, 'Hello');
       expect(message.senderId, 'user1');
       expect(message.timestamp, timestamp);
-      expect(message.status, MessageStatus.sent);
+      expect(message.status, MessageStatus.delivered);
     });
 
-    test('should default status to sent if not provided', () {
+    test('should default status to sending if not provided', () {
       final message = ChatMessage(
         id: '2',
         text: 'Hi',
@@ -28,7 +28,19 @@ void main() {
         timestamp: DateTime.now(),
       );
 
-      expect(message.status, MessageStatus.sent);
+      expect(message.status, MessageStatus.sending);
+    });
+
+    test('should support failed status', () {
+      final message = ChatMessage(
+        id: '3',
+        text: 'Failed Message',
+        senderId: 'user1',
+        timestamp: DateTime.now(),
+        status: MessageStatus.failed,
+      );
+
+      expect(message.status, MessageStatus.failed);
     });
   });
 }

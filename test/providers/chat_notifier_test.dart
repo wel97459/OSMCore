@@ -91,5 +91,30 @@ void main() {
       expect(state.messages.length, 1);
       expect(state.messages.first.text, 'Msg 2');
     });
+
+    test('retryMessage should update status from failed to sending', () {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+      
+      final notifier = container.read(chatSessionProvider.notifier);
+      
+      final failedMessage = ChatMessage(
+        id: 'fail1',
+        text: 'Failed',
+        senderId: 'user1',
+        timestamp: DateTime.now(),
+        status: MessageStatus.failed,
+      );
+
+      notifier.addMessage(failedMessage);
+      
+      var state = container.read(chatSessionProvider);
+      expect(state.messages.first.status, MessageStatus.failed);
+
+      notifier.retryMessage(failedMessage);
+      
+      state = container.read(chatSessionProvider);
+      expect(state.messages.first.status, MessageStatus.sending);
+    });
   });
 }
