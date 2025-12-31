@@ -30,8 +30,8 @@ class SerialConnectionPage extends ConsumerWidget {
     try {
       _serialConnection = LibSerialPortPlusWrapper(address, 115200);
       _serialConnection.open();
-      ref.read(SerialConnectionProvider.notifier).state = _serialConnection;
-      
+      ref.read(SerialConnectionProvider.notifier).state = SerialConnection(_serialConnection);
+
       showSnackBar('Connected to serial port: $address');
       ref.read(isConnectedProvider.notifier).state = true;
       ref.read(DeviceName.notifier).state = address;

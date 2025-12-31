@@ -39,6 +39,6 @@ final BleConnectionProvider = StateProvider<BleConnection?>((ref) {
   return null;
 });
 
-final SerialConnectionProvider = StateProvider<LibSerialPortPlusWrapper?>((ref) {  
+final SerialConnectionProvider = StateProvider<SerialConnection?>((ref) {  
   return null;
 });
