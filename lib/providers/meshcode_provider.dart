@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:meshcore_dart/meshcore_dart.dart';
 import 'package:universal_ble/universal_ble.dart';
+import 'package:get_it/get_it.dart';
 
 //part 'meshcore_provider.g.dart';
 
@@ -34,11 +35,18 @@ final DeviceName = StateProvider<String>((ref) {
   return '';
 }); 
 
-// BLE adapter instance (singleton)
-final BleConnectionProvider = StateProvider<BleConnection?>((ref) {  
-  return null;
-});
+final ContactsProvider = StateProvider<List<dynamic>>((ref) {
+  return [];
+}); 
 
-final SerialConnectionProvider = StateProvider<SerialConnection?>((ref) {  
-  return null;
-});
+final getIt = GetIt.instance;
+
+void setupSerialGetIt(String port) {
+  try {
+    getIt<SerialConnection>().close();
+    getIt.unregister<SerialConnection>();
+  } catch (e) {
+    // Handle error if needed
+  }
+  getIt.registerLazySingleton<SerialConnection>(() => SerialConnection(LibSerialPortPlusWrapper(port, 115200)));
+}

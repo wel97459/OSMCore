@@ -1,0 +1,25 @@
+// Import the standard I/O module for printing debug/info
+import std.mem;
+import std.string;
+import type.time;
+import type.magic;
+
+// Define a simple packet/header structure
+struct Pattern {
+    u8  type;         // Packet type (1 byte)  // Package/subtype (1 byte)
+    u16 len;          // Length field (2 bytes, usually little-endian by default)
+
+    // Optional: If your packet has payload data, you can parse it here
+    u8 payload[len];  // Example: payload = total len minus header size (adjust as needed)
+
+    // Or for a fixed-size payload:
+    // u8 data[16];
+};
+
+auto vi_start = $;
+Pattern pattern @ std::mem::find_sequence(3, 0x3e);
+
+// Print the parsed values for quick checking
+std::print("At offset 0x{:08X}:", vi_start);
+std::print("  type:        0x{:02X}", pattern.type);
+std::print("  len:         0x{:04X} ({} bytes)", pattern.len, pattern.len);

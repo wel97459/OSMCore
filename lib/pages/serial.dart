@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:meshcore_dart/meshcore_dart.dart';
-import 'package:freedomcore/providers/meshcode_provider.dart';
-import 'package:freedomcore/utils/snackbar_helper.dart';
+import 'package:OSMCore/providers/meshcode_provider.dart';
+import 'package:OSMCore/utils/snackbar_helper.dart';
 // import 'package:chat_template/providers/chat_provider.dart';
 // import 'package:chat_template/screens/chat_screen.dart';
 
@@ -23,34 +23,26 @@ class SerialConnectionPage extends ConsumerWidget {
     ref.read(availablePortsProvider.notifier).state = LibSerialPortWrapper.listAvailablePorts();
   }
 
-  void _connect(WidgetRef ref, String address)
+  void _connect(WidgetRef ref, String port)
   {
-    LibSerialPortPlusWrapper _serialConnection;
-
     try {
-      _serialConnection = LibSerialPortPlusWrapper(address, 115200);
-      _serialConnection.open();
-      ref.read(SerialConnectionProvider.notifier).state = SerialConnection(_serialConnection);
-
-      showSnackBar('Connected to serial port: $address');
+      setupSerialGetIt(port);
+      var SerialCon = getIt<SerialConnection>();
+      SerialCon.connect();
+      showSnackBar('Connected to serial port: $port');
       ref.read(isConnectedProvider.notifier).state = true;
-      ref.read(DeviceName.notifier).state = address;
+      ref.read(DeviceName.notifier).state = port;
     } catch (e) {
       showSnackBar('Failed to connect to serial port: $e', isError: true);
     }
   }
 
   void _disconnect(WidgetRef ref) {
-    final _serialConnection = ref.read(SerialConnectionProvider.notifier);
     final _isConnected = ref.read(isConnectedProvider.notifier);
-
-    final connection = _serialConnection.state;
-    if (connection != null) {
-      connection.close();
-      _serialConnection.state = null;
-      _isConnected.state = false;
-      showSnackBar('Disconnected from serial port');
-    }
+    var SerialCon = getIt<SerialConnection>();
+    SerialCon.close();
+    _isConnected.state = false;
+    showSnackBar('Disconnected from serial port');
   } 
 
   @override

@@ -1,5 +1,5 @@
-name: freedomcore
-description: "A new Flutter project."
+name: "OSMCore"
+description: "OSMCore is a Flutter application for managing and interacting with Open Source Mesh networks."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -34,15 +34,17 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  meshcore_dart: ^0.1.6
+  meshcore_dart: ^0.1.7
   provider: ^6.1.5+1
   reaxdb_dart: ^1.4.1
   flutter_hooks: ^0.21.3+1
   permission_config: ^0.0.14
   permission_handler: ^12.0.1
   flex_color_scheme: ^8.4.0
-  flutter_riverpod: ^3.1.0
-  riverpod_annotation: ^4.0.0
+  flutter_riverpod: ^3.0.3
+  riverpod_annotation: ^3.0.3
+  get_it: ^9.2.0
+  meshchat: ^1.0.0+1
 
 dependency_overrides:
   # because of https://github.com/jpnurmi/flutter_libserialport/issues/128
@@ -62,7 +64,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
   build_runner: ^2.4.0
-  riverpod_generator: ^4.0.0
+  riverpod_generator: ^3.0.3
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

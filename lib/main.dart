@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:freedomcore/utils/global_keys.dart';
-import 'package:freedomcore/themes.dart';
+import 'package:OSMCore/utils/global_keys.dart';
+import 'package:OSMCore/themes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 //pages
-import 'package:freedomcore/pages/ble.dart';
-import 'package:freedomcore/pages/home.dart';
-import 'package:freedomcore/pages/serial.dart';
+import 'package:OSMCore/pages/ble.dart';
+import 'package:OSMCore/pages/home.dart';
+import 'package:OSMCore/pages/serial.dart';
+import 'package:OSMCore/pages/test.dart';
 //providers
-import 'package:freedomcore/providers/meshcode_provider.dart';
+import 'package:OSMCore/providers/meshcode_provider.dart';
 
 void main(){
   runApp(const ProviderScope(child: MyApp()));
@@ -27,8 +28,9 @@ Widget build(BuildContext context){
     home: HomePage(),
     routes: {
       '/home': (context) => HomePage(),
-      '/ble': (context) => BlePage(),
-      '/serial': (context) => SerialConnectionPage(), 
+      //'/ble': (context) => BlePage(),
+      '/test': (context) => TestPage(),
+      '/serial': (context) => SerialConnectionPage(),
     },
   ); // MaterialApp
 }

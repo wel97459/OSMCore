@@ -1,6 +1,6 @@
 {
-    "name": "freedomcore",
-    "short_name": "freedomcore",
+    "name": "OSMCore",
+    "short_name": "OSMCore",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

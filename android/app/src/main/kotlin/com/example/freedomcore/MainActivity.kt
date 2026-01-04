@@ -1,4 +1,4 @@
-package com.example.freedomcore
+package com.example.OSMCore
 
 import io.flutter.embedding.android.FlutterActivity
 

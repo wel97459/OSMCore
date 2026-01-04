@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:freedomcore/utils/global_keys.dart';
+import 'package:OSMCore/utils/global_keys.dart';
 import 'package:meshcore_dart/meshcore_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:freedomcore/providers/meshcode_provider.dart';
-import 'package:freedomcore/utils/snackbar_helper.dart';
+import 'package:OSMCore/providers/meshcode_provider.dart';
+import 'package:OSMCore/utils/snackbar_helper.dart';
 
 class HomePage extends ConsumerWidget {
 
@@ -68,27 +68,55 @@ class HomePage extends ConsumerWidget {
           ],
         ),
       ),
+      const PopupMenuItem<String>(
+        value: 'testing',
+        child: Row(
+          children: [
+            Icon(Icons.copy),
+            SizedBox(width: 8),
+            Text('Testing'),
+          ],
+        ),
+      ),
     ];
+  }
+
+  void getContacts(WidgetRef ref) async {
+    var SerialCon = getIt<SerialConnection>();
+    try {
+      print("Getting contacts...");
+      final contacts = await SerialCon.getContacts();
+       print('Contacts retrieved: ${contacts.length}');
+       ref.read(ContactsProvider.notifier).state = contacts;
+    } catch (e) {
+      showSnackBar('Failed to get contacts: $e', isError: true);
+      ref.read(ContactsProvider.notifier).state = [];
+    }
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var MCConnection;
     if(Platform.isAndroid){
-      MCConnection = ref.read(BleConnectionProvider);
+      //MCConnection = BleConnectionProvider;
     } else {
-      MCConnection = ref.read(SerialConnectionProvider);
+      try {
+        MCConnection = getIt<SerialConnection>();
+      } catch (e) {
+        MCConnection = null;
+      }
     }
 
     final MeshCoreDeviceName = ref.watch(DeviceName);
     final isConnected = ref.watch(isConnectedProvider);
+    final contacts = ref.watch(ContactsProvider);
 
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
         title: ListTile(
           title: Text('OSMCore', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          subtitle: Text(isConnected ? MeshCoreDeviceName : 'Disconnected', style: TextStyle(fontSize: 14)),
+          subtitle: Text(isConnected ? '$MeshCoreDeviceName - ${contacts.length}' : 'Disconnected', style: TextStyle(fontSize: 14)),
           trailing: isConnected ? Row(mainAxisSize: MainAxisSize.min, children: [
             PopupMenuButton<String>(
               onSelected: (value) {
@@ -102,6 +130,13 @@ class HomePage extends ConsumerWidget {
                 } else if (value == 'advertflood') {
                   try {
                     MCConnection?.sendFloodAdvert();
+                    showSnackBar('Advert sent via Flood');
+                  } catch (e) {
+                    showSnackBar('Failed to send advert: $e', isError: true);
+                  }
+                } else if (value == 'testing') {
+                  try {
+                    Navigator.pushNamed(context, '/test');
                     showSnackBar('Advert sent via Flood');
                   } catch (e) {
                     showSnackBar('Failed to send advert: $e', isError: true);
@@ -139,9 +174,23 @@ class HomePage extends ConsumerWidget {
               )
         ),
       ),
-      body: Center(
-        child: Text('Nothing to see here yet!'),
-      ),
+        body: Scrollbar(
+          child: ListView(
+            children: [
+              for (final contact in ref.watch(ContactsProvider))
+                Builder(builder: (context) {
+                  return ElevatedButton(
+                    child: Text(contact['advName'] ?? 'Unknown'),
+                    onPressed: () {},
+                  );
+                }),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.refresh),
+          onPressed: () => getContacts(ref),
+        ),
     );
   }
 }

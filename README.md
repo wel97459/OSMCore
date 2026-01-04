@@ -1,4 +1,4 @@
-# freedomcore
+# OSMCore
 
 A new Flutter project.
 
